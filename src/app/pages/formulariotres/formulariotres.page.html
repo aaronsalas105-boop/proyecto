@@ -1,0 +1,63 @@
+<ion-content [fullscreen]="true" class="formulario-content">
+  <!-- Texto resumen arriba -->
+  <div class="resumen">
+    Plaza Norte | 29 septiembre, 2025 | 1 Festejado(s) | 10 Invitados | Ultra Fun
+  </div>
+
+  <!-- Tarjeta principal -->
+  <div class="form-box">
+    <div class="top">
+      <img src="assets/img/confirma2.png" alt="Chuck E" class="form-logo" />
+    </div>
+
+    <div class="gray-box">
+      <h3 class="section-title morado">
+        ¡Estamos casi listos!<br />
+        necesitamos los <b>Datos del adulto responsable</b>
+      </h3>
+      <p class="condiciones">
+        <a href="#">Revisa nuestros términos y condiciones</a>
+      </p>
+
+      <form>
+        <ion-label position="stacked">Rut adulto responsable *</ion-label>
+        <ion-input placeholder="Ej: 12.345.678-9" type="text"></ion-input>
+
+        <div class="nombre-group">
+          <div>
+            <ion-label position="stacked">Nombre *</ion-label>
+            <ion-input placeholder="Ej: Juan"></ion-input>
+          </div>
+          <div>
+            <ion-label position="stacked">Apellido *</ion-label>
+            <ion-input placeholder="Ej: Pérez"></ion-input>
+          </div>
+          <div>
+            <ion-label position="stacked">Teléfono *</ion-label>
+            <ion-input placeholder="+56 9 1234 5678" type="tel"></ion-input>
+          </div>
+        </div>
+
+        <ion-label position="stacked">Dirección de correo electrónico *</ion-label>
+        <ion-input placeholder="ejemplo@email.com" type="email"></ion-input>
+
+        <ion-label position="stacked">Comentarios adicionales (opcional)</ion-label>
+        <ion-textarea placeholder="Escribe aquí..."></ion-textarea>
+
+        <ion-item lines="none" class="terminos">
+          <ion-checkbox></ion-checkbox>
+          <ion-label>Acepto Términos y Condiciones *</ion-label>
+        </ion-item>
+
+        <div class="actions">
+          <ion-button expand="block" class="agenda-btn rojo" (click)="siguiente()">
+            Siguiente
+          </ion-button>
+          <ion-button expand="block" class="agenda-btn morado" routerLink="/formulariodos">
+            Volver
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

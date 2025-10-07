@@ -1,0 +1,87 @@
+<ion-header class="top-header">
+  <ion-toolbar>
+    <div class="header-center">
+      <!-- Botón menú desplegable -->
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <ion-icon [name]="menuOpen ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+      </button>
+
+      <!-- Logo -->
+      <img src="/assets/img/logo1.png" alt="Logo" class="header-logo" />
+      <span class="header-text">CHUCK E. CHEESE</span>
+    </div>
+  </ion-toolbar>
+
+  <!-- Menú desplegable -->
+  <div class="dropdown-menu" *ngIf="menuOpen">
+    <div class="menu-row">
+      <span class="menu-link">Soporte</span>
+      <span class="divider">|</span>
+      <span class="menu-link">Ayuda</span>
+    </div>
+
+    <div class="menu-row">
+      <label class="menu-label">Idioma</label>
+      <select class="menu-select">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="menu-row social-icons">
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <ion-icon name="mail-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+
+<!-- Overlay oscuro -->
+<div class="overlay-dark" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+
+<!-- Contenido principal -->
+<ion-content [fullscreen]="true" class="main-content games-page">
+  <div class="overlay"></div>
+
+  <div class="center-content">
+    <h2 class="inicio-titulo">¡Comienza a jugar!</h2>
+
+    <ion-button expand="block" class="play-btn" shape="round" size="large" [routerLink]="['/card']">
+      Recargar tarjeta
+    </ion-button>
+  </div>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer class="footer-menu">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-justify-content-around ion-align-items-center">
+        <ion-col class="tab-icon" [routerLink]="['/rewards']">
+          <img src="/assets/img/icon-rewards.png" alt="Rewards" class="tab-img" />
+          <ion-label>Rewards</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/food']">
+          <img src="/assets/img/icon-food.png" alt="Menú" class="tab-img" />
+          <ion-label>Cumpleaños</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/menu']">
+          <img src="/assets/img/icon-home.png" alt="Inicio" class="tab-img" />
+          <ion-label>Inicio</ion-label>
+        </ion-col>
+
+        <!-- 🔴 Activo en rojo (Games) -->
+        <ion-col class="tab-icon active" [routerLink]="['/games']">
+          <img src="/assets/img/icon-games.png" alt="Juegos" class="tab-img" />
+          <ion-label>Juegos</ion-label>
+        </ion-col>
+
+        <ion-col class="tab-icon" [routerLink]="['/map']">
+          <img src="/assets/img/icon-map.png" alt="Cerca" class="tab-img" />
+          <ion-label>Cerca</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

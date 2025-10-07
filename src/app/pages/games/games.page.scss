@@ -1,0 +1,52 @@
+@use '../menu/menu.page' as *;
+
+/* ====== FONDO ====== */
+.games-page {
+  --background: none;
+  background: url('/assets/img/juega.png') center 65% / 100% no-repeat;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+
+
+/* ====== CONTENIDO CENTRAL ====== */
+.center-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 28vh; /* 🔹 más arriba, cerca de la parte curva */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.inicio-titulo {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #6a1b9a;
+  text-shadow: 0 3px 6px rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+/* Botón rojo */
+.play-btn {
+  --background: #d4151f;
+  --border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 65%;
+  max-width: 260px;
+  min-height: 50px;
+  box-shadow: 0 6px 14px rgba(212, 21, 31, 0.4);
+}
+
+/* Ícono activo */
+.tab-icon.active .tab-img {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(97%) saturate(5641%)
+    hue-rotate(345deg) brightness(85%) contrast(110%);
+}

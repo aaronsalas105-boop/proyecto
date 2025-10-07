@@ -1,0 +1,206 @@
+/* Fondo */
+.main-content {
+  --background: none;
+  background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+  background-color: #fff;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  --padding-bottom: 120px; /* 👈 espacio para que el último bloque no choque con el footer */
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.main-container {
+  position: relative;
+  z-index: 2;
+  padding: 12px;
+}
+
+/* Header */
+.top-header {
+  --background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  padding-top: 15px;
+  position: relative;
+  z-index: 20;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.header-logo {
+  height: 34px;
+  width: auto;
+}
+
+.header-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d4151f;
+}
+
+/* Botón circular menú */
+.menu-toggle {
+  background: #d4151f;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+  background: #d4151f;
+  color: #fff;
+  padding: 12px 20px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 6px auto;
+  max-width: 340px;
+  animation: fadeDown 0.25s ease;
+  z-index: 30;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+
+.menu-link { font-weight: bold; cursor: pointer; }
+.divider { color: #fff; }
+.menu-label { font-weight: bold; margin-right: 8px; }
+
+.menu-select {
+  border-radius: 6px;
+  padding: 2px 6px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.social-icons ion-icon {
+  font-size: 1.5rem;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+/* Animación */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Overlay oscuro */
+.overlay-dark {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 15;
+}
+
+/* Footer */
+.footer-menu {
+  --background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.tab-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+.tab-img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 2px;
+}
+
+.tab-icon.active {
+  color: #d4151f;
+}
+
+.tab-icon.active .tab-img {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(97%) saturate(5641%) hue-rotate(345deg) brightness(85%) contrast(110%);
+}
+
+/* ====== BLOQUES DE UBICACIONES (centrados como tarjetas) ====== */
+.location-block {
+  background: #fff;
+  border-radius: 0.8rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  padding: 0.7rem;
+  margin: 1rem auto;        /* 👈 centrado */
+  max-width: 360px;         /* 👈 ancho tipo card */
+  text-align: center;       /* 👈 centra el texto */
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    color: #333;
+  }
+
+  .location-item {
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+
+    h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 0.2rem;
+      text-align: center; /* 👈 centrado */
+    }
+
+    p {
+      font-size: 0.8rem;
+      color: #444;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+      text-align: center; /* 👈 centrado */
+    }
+
+    .location-btn {
+      --background: #d4151f;
+      --color: #fff;
+      border-radius: 0.8rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      min-height: 32px;
+      display: block;
+      margin: 0.5rem auto; /* 👈 botón centrado */
+    }
+  }
+}

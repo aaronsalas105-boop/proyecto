@@ -1,0 +1,106 @@
+<ion-content [fullscreen]="true" class="formulario2-content">
+
+
+  <p class="resumen">
+    Plaza Norte | 29 septiembre, 2025 | 1 Festejado(s) | 10 Invitados
+  </p>
+  <!-- Contenedor blanco -->
+  <div class="form-box">
+
+    <!-- Encabezado general -->
+    <div class="header">
+      <img src="assets/img/chucke.png" alt="Chuck E" class="chucke-logo" />
+      <h2 class="titulo">ESCOGE TU<br><span>PAQUETE</span></h2>
+    </div>
+
+    <!-- Bloques de paquetes -->
+    <div class="paquetes-container">
+
+      <!-- SUPER FUN -->
+      <div class="paquete super">
+        <img src="assets/img/formu2.png" alt="Escoge tu paquete" class="paquete-img" />
+        <div class="paquete-header rojo">
+          <h3>SUPER FUN</h3>
+          <p>$14.990 <span>x niño</span></p>
+        </div>
+
+        <div class="tabla">
+          <div class="col fest">
+            <h4>Festejado</h4>
+            <p>75 puntos<br>(para jugar)</p>
+            <p>–</p>
+            <p>Con orejas</p>
+          </div>
+          <div class="col invit">
+            <h4>Invitados</h4>
+            <p>45 puntos<br>(para jugar)</p>
+            <p>–</p>
+            <p>(polipapel)</p>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="agenda-btn" (click)="siguiente('Super Fun')">
+          Siguiente
+        </ion-button>
+      </div>
+
+      <!-- ULTRA FUN -->
+      <div class="paquete ultra">
+        <img src="assets/img/formu2.png" alt="Escoge tu paquete" class="paquete-img" />
+        <div class="paquete-header morado">
+          <h3>ULTRA FUN</h3>
+          <p>$16.990 <span>x niño</span></p>
+        </div>
+
+        <div class="tabla">
+          <div class="col fest">
+            <h4>Festejado</h4>
+            <p>130 puntos<br>(para jugar)</p>
+            <p>1.000 canjeables</p>
+            <p>Con orejas</p>
+          </div>
+          <div class="col invit">
+            <h4>Invitados</h4>
+            <p>70 puntos<br>(para jugar)</p>
+            <p>–</p>
+            <p>Sin orejas</p>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="agenda-btn" (click)="siguiente('Ultra Fun')">
+          Siguiente
+        </ion-button>
+      </div>
+
+      <!-- MEGA FUN -->
+      <div class="paquete mega">
+        <img src="assets/img/formu2.png" alt="Escoge tu paquete" class="paquete-img" />
+        <div class="paquete-header naranja">
+          <h3>MEGA FUN</h3>
+          <p>$20.990 <span>x niño</span></p>
+        </div>
+
+        <div class="tabla">
+          <div class="col fest">
+            <h4>Festejado</h4>
+            <p>190 puntos<br>(para jugar)</p>
+            <p>2.000 canjeables</p>
+            <p>Con orejas</p>
+          </div>
+          <div class="col invit">
+            <h4>Invitados</h4>
+            <p>100 puntos<br>(para jugar)</p>
+            <p>–</p>
+            <p>Sin orejas</p>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="agenda-btn" (click)="siguiente('Mega Fun')">
+          Siguiente
+        </ion-button>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

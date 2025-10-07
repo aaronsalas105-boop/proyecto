@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true" class="main-content">
+  <!-- Fondo oscurecido -->
+  <div class="background-overlay"></div>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="/assets/img/logo1.png" alt="Logo Chuck E. Cheese" class="logo-face" />
+  </div>
+
+  <!-- Caja blanca inferior -->
+  <div class="buttons-section">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" size-lg="6" class="buttons-column">
+
+          <!-- Cartita -->
+          <div class="login-card">
+
+            <!-- Tabs -->
+            <div class="login-tabs">
+              <button class="tab-btn" (click)="goToLogin()">Iniciar Sesion</button>
+              <button class="tab-btn active">Registrarse</button>
+            </div>
+
+            <!-- Texto Bienvenida -->
+            <h2 class="welcome-login">¡Bienvenido!</h2>
+
+            <!-- Inputs -->
+            <ion-item lines="none" class="custom-input">
+              <ion-input placeholder="Correo" type="email"></ion-input>
+            </ion-item>
+            <ion-item lines="none" class="custom-input">
+              <ion-input placeholder="Contraseña" type="password"></ion-input>
+            </ion-item>
+            <ion-item lines="none" class="custom-input">
+              <ion-input placeholder="Teléfono" type="tel"></ion-input>
+            </ion-item>
+
+            <!-- Botón -->
+            <div class="button-container">
+              <ion-button expand="block" color="danger" shape="round" size="large" (click)="onRegister()">
+                Crear Cuenta
+              </ion-button>
+            </div>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

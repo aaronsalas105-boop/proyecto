@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true" class="main-content">
+  <!-- oscurece un poco el fondo para que el texto resalte -->
+  <div class="background-overlay"></div>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="/assets/img/logo1.png" alt="Logo Chuck E. Cheese" class="logo-face" />
+  </div>
+
+  <!-- Título -->
+  <div class="main-text ion-text-center">
+    <h2 class="welcome-text">¡Come, Juega y Diviértete!</h2>
+  </div>
+
+  <!-- Caja blanca inferior con botón y link -->
+  <div class="buttons-section">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" size-lg="6" class="buttons-column">
+
+          <div class="button-container">
+            <ion-button
+              expand="block"
+              color="danger"
+              shape="round"
+              size="large"
+              (click)="onIniciarSesion()">
+              Iniciar Sesion
+            </ion-button>
+          </div>
+
+          <div class="register-link ion-text-center">
+            <p class="register-text">
+              ¿No tienes una cuenta?
+              <a href="#" (click)="onCrearCuenta(); $event.preventDefault()" class="register-link-text">
+                Regístrate
+              </a>
+            </p>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

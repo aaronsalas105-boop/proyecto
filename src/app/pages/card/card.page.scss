@@ -1,0 +1,315 @@
+/* ====== GENERAL (aplica a ambas páginas) ====== */
+
+/* Fondo */
+.main-content {
+  --background: none;
+  background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+  background-color: #fff;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+/* Header */
+.top-header {
+  --background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  padding-top: 15px;
+  position: relative;
+  z-index: 20;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.header-logo {
+  height: 34px;
+  width: auto;
+}
+
+.header-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d4151f;
+}
+
+/* Botón circular menú */
+.menu-toggle {
+  background: #d4151f;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+  background: #d4151f;
+  color: #fff;
+  padding: 12px 20px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 6px auto;
+  max-width: 340px;
+  animation: fadeDown 0.25s ease;
+  z-index: 30;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+
+.menu-link { font-weight: bold; cursor: pointer; }
+.divider { color: #fff; }
+.menu-label { font-weight: bold; margin-right: 8px; }
+
+.menu-select {
+  border-radius: 6px;
+  padding: 2px 6px;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.social-icons ion-icon {
+  font-size: 1.5rem;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+/* Animación */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Overlay oscuro */
+.overlay-dark {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 15;
+}
+
+/* Footer */
+.footer-menu {
+  --background: #fff;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.tab-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+.tab-img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 2px;
+}
+
+.tab-icon.active {
+  color: #d4151f;
+}
+
+.tab-icon.active .tab-img {
+  filter: brightness(0) saturate(100%) invert(18%) sepia(97%) saturate(5641%) hue-rotate(345deg) brightness(85%) contrast(110%);
+}
+
+/* ====== CARD PAGE ====== */
+
+.main-container {
+  position: relative;
+  z-index: 2;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Tarjeta morada */
+.playpass-img {
+  width: 300px;
+  height: 180px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  cursor: pointer;
+  object-fit: cover;
+}
+
+/* Tarjeta roja */
+.card-details {
+  background: #d4151f;
+  color: #fff;
+  border-radius: 14px;
+  width: 300px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  cursor: pointer;
+  text-align: center;
+}
+
+.card-details h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.card-code {
+  background: #fff;
+  color: #000;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: bold;
+  margin: 4px 0;
+  font-size: 0.85rem;
+}
+
+.card-desc {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+/* Botón añadir */
+.add-card-btn {
+  --background: #d4151f;
+  --border-radius: 30px;
+  font-weight: bold;
+  width: 70%;
+  max-width: 260px;
+  min-height: 46px;
+  box-shadow: 0 6px 14px rgba(212,21,31,.4);
+}
+
+/* Bloques */
+.info-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.info-box {
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.info-box.purple {
+  background: #6a1b9a;
+  color: #fff;
+}
+
+.info-box.gray {
+  background: #777;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+}
+
+.info-box.gray:hover {
+  background: #666;
+}
+
+.info-box.gray:active {
+  background: #555;
+  transform: scale(0.97);
+}
+
+/* ====== MENU PAGE ====== */
+
+/* Reajuste contenedor central en Menu */
+.menu-page .main-container {
+  margin-top: 25vh;
+  gap: 22px;
+}
+
+/* Burbuja morada */
+.speech-bubble {
+  position: relative;
+  background: #6a1b9a;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 22px 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 340px;
+  min-width: 280px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px 15px 0;
+  border-style: solid;
+  border-color: #6a1b9a transparent transparent transparent;
+}
+
+/* Botón en Menu */
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button-container ion-button {
+  --background: #d4151f;
+  --border-radius: 30px;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 14px rgba(212,21,31,.4);
+  width: 65%;
+  max-width: 260px;
+  min-height: 50px;
+}

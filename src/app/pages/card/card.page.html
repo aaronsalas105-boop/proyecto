@@ -1,0 +1,112 @@
+<ion-header class="top-header">
+  <ion-toolbar>
+    <div class="header-center">
+      <!-- Botón menú desplegable -->
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <ion-icon [name]="menuOpen ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+      </button>
+
+      <!-- Logo -->
+      <img src="/assets/img/logo1.png" alt="Logo" class="header-logo" />
+      <span class="header-text">CHUCK E. CHEESE</span>
+    </div>
+  </ion-toolbar>
+
+  <!-- Menú desplegable -->
+  <div class="dropdown-menu" *ngIf="menuOpen">
+    <div class="menu-row">
+      <span class="menu-link">Soporte</span>
+      <span class="divider">|</span>
+      <span class="menu-link">Ayuda</span>
+    </div>
+
+    <div class="menu-row">
+      <label class="menu-label">Idioma</label>
+      <select class="menu-select">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="menu-row social-icons">
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <ion-icon name="mail-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+
+<!-- Overlay oscuro -->
+<div class="overlay-dark" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+
+<ion-content [fullscreen]="true" class="main-content">
+  <div class="background-overlay"></div>
+
+  <div class="main-container">
+    <!-- Tarjeta interactiva -->
+    <div class="playpass-card" (click)="toggleCard()">
+      <ng-container *ngIf="!showDetails">
+        <img src="/assets/img/playpass-card.png" alt="Play Pass" class="playpass-img" />
+      </ng-container>
+
+      <ng-container *ngIf="showDetails">
+        <div class="card-details">
+          <h3>CHUCK E.’S PLAY PASS</h3>
+          <p class="card-code">F38CC4C6</p>
+          <p class="card-desc">
+            Esta tarjeta es recargable.<br />
+            Se pueden cargar montos adicionales en locales Chuck E. Cheese.<br />
+            Chuck E. Cheese no se responsabiliza por pérdida o daños.
+          </p>
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-button expand="block" color="danger" class="add-card-btn">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      Añadir tarjeta
+    </ion-button>
+
+    <div class="info-blocks">
+      <div class="info-box purple">
+        <p><strong>Saldo</strong><br>Puntos: 27<br>Minutos: 0</p>
+      </div>
+      <div class="info-box purple">
+        <p><strong>Tickets</strong><br>1250</p>
+      </div>
+      <button class="info-box gray btn-action">Pausar Tarjeta</button>
+      <button class="info-box gray btn-action">Bloquear Tarjeta</button>
+    </div>
+  </div>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer class="footer-menu">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-justify-content-around ion-align-items-center">
+        <ion-col class="tab-icon" [routerLink]="['/rewards']">
+          <img src="/assets/img/icon-rewards.png" alt="Rewards" class="tab-img" />
+          <ion-label>Rewards</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/food']">
+          <img src="/assets/img/icon-food.png" alt="Menú" class="tab-img" />
+          <ion-label>Cumpleaños</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon active" [routerLink]="['/card']">
+          <img src="/assets/img/icon-home.png" alt="Inicio" class="tab-img" />
+          <ion-label>Inicio</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/games']">
+          <img src="/assets/img/icon-games.png" alt="Juegos" class="tab-img" />
+          <ion-label>Juegos</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/map']">
+          <img src="/assets/img/icon-map.png" alt="Cerca" class="tab-img" />
+          <ion-label>Cerca</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

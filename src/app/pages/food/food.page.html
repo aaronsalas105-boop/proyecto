@@ -1,0 +1,133 @@
+<ion-header class="top-header">
+  <ion-toolbar>
+    <div class="header-center">
+      <!-- Botón menú desplegable -->
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <ion-icon [name]="menuOpen ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+      </button>
+
+      <!-- Logo -->
+      <img src="/assets/img/logo1.png" alt="Logo" class="header-logo" />
+      <span class="header-text">CHUCK E. CHEESE</span>
+    </div>
+  </ion-toolbar>
+
+  <!-- Menú desplegable -->
+  <div class="dropdown-menu" *ngIf="menuOpen">
+    <div class="menu-row">
+      <span class="menu-link">Soporte</span>
+      <span class="divider">|</span>
+      <span class="menu-link">Ayuda</span>
+    </div>
+    <div class="menu-row">
+      <label class="menu-label">Idioma</label>
+      <select class="menu-select">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div class="menu-row social-icons">
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-whatsapp"></ion-icon>
+      <ion-icon name="mail-outline"></ion-icon>
+    </div>
+  </div>
+</ion-header>
+
+<!-- Overlay oscuro -->
+<div class="overlay-dark" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+
+<ion-content [fullscreen]="true" class="main-content">
+  <div class="background-overlay"></div>
+  <div class="main-container food-page">
+
+    <!-- Banner cumpleaños -->
+    <div class="birthday-banner">
+      <span>¡El mejor cumpleaños del universo!</span>
+      <img src="/assets/img/comple1.png" alt="Chuck E" class="birthday-icon"/>
+    </div>
+
+    <!-- Bloque de circulitos -->
+    <div class="birthday-box">
+      <h2 class="birthday-title">
+        ¿Qué le espera a la estrella del cumpleaños <br>
+        y a sus invitados en el gran día?
+      </h2>
+      <div class="birthday-photos">
+        <div class="photo-row">
+          <img src="assets/img/foto1.png" alt="Foto 1" class="circle-photo" (click)="openModal(1)" />
+          <img src="assets/img/foto2.png" alt="Foto 2" class="circle-photo" (click)="openModal(2)" />
+        </div>
+        <div class="photo-row">
+          <img src="assets/img/foto3.png" alt="Foto 3" class="circle-photo" (click)="openModal(3)" />
+          <img src="assets/img/foto4.png" alt="Foto 4" class="circle-photo" (click)="openModal(4)" />
+        </div>
+        <div class="photo-row">
+          <img src="assets/img/foto5.png" alt="Foto 5" class="circle-photo" (click)="openModal(5)" />
+          <img src="assets/img/foto6.png" alt="Foto 6" class="circle-photo" (click)="openModal(6)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+      <ng-template>
+        <div class="modal-container">
+          <h2>{{ modalData.title }}</h2>
+          <p>{{ modalData.text }}</p>
+          <ion-button expand="block" (click)="closeModal()">¡Entendido!</ion-button>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+    <!-- Card blanca con beneficios -->
+    <div class="birthday-box">
+      <h2 class="birthday-title">Todas las fiestas de cumpleaños incluyen:</h2>
+      <ul class="benefits-list">
+        <li>2 horas de celebración con mesa reservada.<br> Anfitrión exclusivo.</li>
+        <li>Tarjeta PlayPass con puntos por niño.</li>
+        <li>2 Trozos de pizza y Bebida ilimitada por niño.</li>
+        <li>Juegos y Show de Chuck E. Cheese en vivo.</li>
+        <li>10% descuento en juguetes para cada niño.</li>
+        <li>10% descuento en todo menú durante la celebración.</li>
+      </ul>
+
+      <!-- Botones -->
+      <div class="actions">
+        <ion-button expand="block" class="agenda-btn" [routerLink]="['/formulariouno']">Agenda tu cumpleaños</ion-button>
+        <ion-button expand="block" class="reserva-btn">Revisa y/o modifica tu reserva</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer class="footer-menu">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-justify-content-around ion-align-items-center">
+        <ion-col class="tab-icon" [routerLink]="['/rewards']">
+          <img src="/assets/img/icon-rewards.png" alt="Rewards" class="tab-img" />
+          <ion-label>Rewards</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon active" [routerLink]="['/food']">
+          <img src="/assets/img/icon-food.png" alt="Cumpleaños" class="tab-img" />
+          <ion-label>Cumpleaños</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/menu']">
+          <img src="/assets/img/icon-home.png" alt="Inicio" class="tab-img" />
+          <ion-label>Inicio</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/games']">
+          <img src="/assets/img/icon-games.png" alt="Juegos" class="tab-img" />
+          <ion-label>Juegos</ion-label>
+        </ion-col>
+        <ion-col class="tab-icon" [routerLink]="['/map']">
+          <img src="/assets/img/icon-map.png" alt="Cerca" class="tab-img" />
+          <ion-label>Cerca</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

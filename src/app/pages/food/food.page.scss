@@ -1,0 +1,310 @@
+/* ===== Fondo ===== */
+.main-content {
+    --background: none;
+    background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+    background-color: #fff;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+    --padding-bottom: 100px;
+  }
+  
+  .background-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+  }
+  
+  .main-container {
+    position: relative;
+    z-index: 2;
+    padding: 12px;
+  }
+  
+  /* ===== Header ===== */
+  .top-header {
+    --background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    padding-top: 15px;
+    position: relative;
+    z-index: 20;
+  }
+  
+  .header-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  
+  .header-logo {
+    height: 34px;
+    width: auto;
+  }
+  
+  .header-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d4151f;
+  }
+  
+  .menu-toggle {
+    background: #d4151f;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+    color: #fff;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .dropdown-menu {
+    background: #d4151f;
+    color: #fff;
+    padding: 12px 20px;
+    text-align: center;
+    border-radius: 12px;
+    margin: 6px auto;
+    max-width: 340px;
+    animation: fadeDown 0.25s ease;
+    z-index: 30;
+  }
+  
+  .menu-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0;
+  }
+  
+  .menu-link { font-weight: bold; cursor: pointer; }
+  .divider { color: #fff; }
+  .menu-label { font-weight: bold; margin-right: 8px; }
+  
+  .menu-select {
+    border-radius: 6px;
+    padding: 2px 6px;
+    border: none;
+    font-size: 0.9rem;
+  }
+  
+  .social-icons ion-icon {
+    font-size: 1.5rem;
+    margin: 0 6px;
+    cursor: pointer;
+  }
+  
+  .overlay-dark {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 15;
+  }
+  
+  /* ===== Footer ===== */
+  .footer-menu {
+    --background: #fff;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  
+  .tab-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 0;
+    font-size: 0.7rem;
+    color: #777;
+  }
+  
+  .tab-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 2px;
+  }
+  
+  .tab-icon.active {
+    color: #d4151f;
+  }
+  
+  .tab-icon.active .tab-img {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(97%) saturate(5641%) hue-rotate(345deg) brightness(85%) contrast(110%);
+  }
+  
+  /* ===== Banner rojo ===== */
+  .birthday-banner {
+    background: #d4151f url('/assets/img/comple1.png') right center / contain no-repeat;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    min-height: 80px;
+  }
+  
+  .birthday-banner span {
+    font-size: 1rem;
+    flex: 1;
+  }
+  
+  .birthday-icon {
+    height: 32px;
+    width: auto;
+  }
+  
+  /* ===== Card blanca general ===== */
+  .birthday-box {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .birthday-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 1rem 0;
+    color: #6a1b9a;
+  }
+  
+  /* ===== Circulitos ===== */
+  .birthday-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .photo-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .circle-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #f5f5f5; /* gris si no hay imagen */
+    border: 3px solid #eee;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .circle-photo:hover {
+    transform: scale(1.05);
+  }
+  
+  /* ===== Lista de beneficios ===== */
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .benefits-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .benefits-list li::before {
+    content: "★";
+    color: #d4151f;
+    font-size: 1rem;
+    line-height: 1.2;
+    margin-right: 6px;
+  }
+  
+  /* ===== Botones ===== */
+  .actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .agenda-btn {
+    --background: #d4151f;
+    --color: #fff;
+    font-weight: bold;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .reserva-btn {
+    --background: #6a1b9a;
+    --color: #fff;
+    font-weight: bold;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* ===== Modal personalizado ===== */
+  ion-modal::part(content) {
+    --background: transparent;
+    --box-shadow: none;
+  }
+  
+  .modal-container {
+    background: #6a1b9a;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    max-width: 90%;
+    margin: auto;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  }
+  
+  .modal-container h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .modal-container p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  .modal-container ion-button {
+    --background: #d4151f;
+    --color: #fff;
+    --border-radius: 0.8rem;
+    font-weight: bold;
+  }
+  

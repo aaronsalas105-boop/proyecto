@@ -1,0 +1,173 @@
+/* Pantalla completa */
+.formulario-content {
+    --background: #d4151f url('/assets/img/fondo2.png') center center / cover repeat;
+  
+    /* 👇 esta es la forma correcta en Ionic para bajar todo */
+    --padding-top: 60px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Marca superior compacta */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: .5px;
+    margin-top: .5rem;
+    img { height: 36px; width: auto; }
+    span { font-size: .95rem; }
+  }
+  
+  /* Cinta roja de bienvenida */
+  .welcome-ribbon {
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    border-radius: .6rem;
+    padding: .45rem .7rem;
+    margin: .4rem 0 .6rem;
+    width: min(94%, 420px);
+    line-height: 1.15;
+    font-size: .95rem;
+  }
+  
+  /* Card principal */
+  .form-box {
+    background: #fff;
+    border-radius: 1rem;
+    width: min(94%, 420px);
+    padding: .8rem;
+    display: grid;
+    gap: .6rem;
+    margin: 0 auto; /* centrado */
+  }
+  
+  /* Cabecera interna */
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .25rem;
+  }
+  
+  .form-logo { 
+    height: 120px; 
+    width: auto; 
+  }
+  
+  .form-subtitle {
+    font-size: 1.05rem;
+    color: #6a1b9a;
+    font-weight: 800;
+    margin: 0;
+  }
+  
+  /* Bloques grises */
+  .gray-box {
+    background: #f3f3f3;
+    border-radius: .7rem;
+    padding: .6rem;
+  }
+  
+  .section-title {
+    color: #6a1b9a;
+    font-weight: 800;
+    margin: 0 0 .4rem 0;
+    font-size: .95rem;
+  }
+  
+  /* Radios */
+  .radios-inline {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    ion-item {
+      --padding-start: 0;
+      --inner-padding-end: 0;
+      --min-height: 30px;
+      font-size: .85rem;
+    }
+  }
+  .radios-inline.tight { gap: .4rem; }
+  
+  .festejados {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: .5rem;
+  }
+  
+  .invited {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: .5rem;
+    font-size: .9rem;
+    ion-input {
+      width: 64px;
+      text-align: center;
+      --padding-start: .4rem;
+      --padding-end: .4rem;
+      --min-height: 34px;
+      background: #fff;
+      border-radius: .5rem;
+      box-shadow: 0 0 0 1px #e5e5e5 inset;
+    }
+  }
+  
+  .nota {
+    margin: .35rem 0 0;
+    font-size: .72rem;
+    color: #555;
+    line-height: 1.2;
+  }
+  
+  /* Calendario */
+  ion-datetime {
+    --background: #fff;
+    --title-color: #6a1b9a;
+    --ion-color-primary: #d4151f;
+    border-radius: 0.6rem;
+    font-size: 0.85rem;
+    max-height: 280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* Propina */
+  .propina {
+    background: #f8f8f8;
+    border-radius: .7rem;
+    padding: .6rem;
+    font-size: .76rem;
+    color: #444;
+    display: flex;
+    gap: .4rem;
+    align-items: flex-start;
+    line-height: 1.25;
+  }
+  
+  /* Botón al final del formulario */
+  .actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .agenda-btn {
+    --background: #d4151f;
+    --color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 0.8rem;
+    width: 100%;
+    max-width: 420px;
+    min-height: 45px;
+  }
+  

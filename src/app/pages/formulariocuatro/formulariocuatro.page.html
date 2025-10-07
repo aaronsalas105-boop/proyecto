@@ -1,0 +1,56 @@
+<ion-content [fullscreen]="true" class="formulario-content">
+  <!-- Texto resumen arriba -->
+  <div class="resumen">
+    Plaza Norte | 29 septiembre, 2025 | 1 Festejado(s) | 10 Invitados | Ultra Fun
+  </div>
+
+  <!-- Tarjeta principal -->
+  <div class="form-box">
+    <div class="top">
+      <img src="assets/img/confirma2.png" alt="Chuck E" class="form-logo" />
+    </div>
+
+    <div class="gray-box">
+      <h3 class="section-title morado">
+        Y ahora necesitamos<br />
+        <b>los datos del festejado</b>
+      </h3>
+
+      <form>
+        <div class="nombre-group">
+          <div>
+            <ion-label position="stacked">Nombre *</ion-label>
+            <ion-input placeholder="Ej: Juan"></ion-input>
+          </div>
+          <div>
+            <ion-label position="stacked">Apellido *</ion-label>
+            <ion-input placeholder="Ej: Pérez"></ion-input>
+          </div>
+        </div>
+
+        <ion-label position="stacked">Edad *</ion-label>
+        <ion-input placeholder="Ej: 7" type="number"></ion-input>
+
+        <ion-label position="stacked">Fecha de nacimiento: (opcional)</ion-label>
+        <ion-datetime display-format="DD/MM/YYYY"></ion-datetime>
+
+        <ion-label position="stacked">Colegio: (opcional)</ion-label>
+        <ion-input placeholder="Ej: San Ignacio"></ion-input>
+
+        <ion-item lines="none" class="terminos">
+          <ion-radio></ion-radio>
+          <ion-label>No está en edad escolar (opcional)</ion-label>
+        </ion-item>
+
+        <div class="actions">
+          <ion-button expand="block" class="agenda-btn rojo" (click)="confirmarReserva()">
+            Confirmar mi reserva
+          </ion-button>
+          <ion-button expand="block" class="agenda-btn morado" routerLink="/formulariotres">
+            Volver
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
