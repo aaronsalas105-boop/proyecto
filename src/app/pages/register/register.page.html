@@ -18,27 +18,46 @@
 
             <!-- Tabs -->
             <div class="login-tabs">
-              <button class="tab-btn" (click)="goToLogin()">Iniciar Sesion</button>
+              <button class="tab-btn" (click)="goToLogin()">Iniciar Sesión</button>
               <button class="tab-btn active">Registrarse</button>
             </div>
 
             <!-- Texto Bienvenida -->
-            <h2 class="welcome-login">¡Bienvenido!</h2>
+            <h2 class="welcome-login">¡Crea tu cuenta!</h2>
 
             <!-- Inputs -->
             <ion-item lines="none" class="custom-input">
-              <ion-input placeholder="Correo" type="email"></ion-input>
+              <ion-input
+                placeholder="Correo"
+                type="email"
+                [(ngModel)]="email">
+              </ion-input>
             </ion-item>
+
             <ion-item lines="none" class="custom-input">
-              <ion-input placeholder="Contraseña" type="password"></ion-input>
+              <ion-input
+                placeholder="Contraseña"
+                type="password"
+                [(ngModel)]="password">
+              </ion-input>
             </ion-item>
+
             <ion-item lines="none" class="custom-input">
-              <ion-input placeholder="Teléfono" type="tel"></ion-input>
+              <ion-input
+                placeholder="Teléfono (opcional)"
+                type="tel"
+                [(ngModel)]="phone">
+              </ion-input>
             </ion-item>
 
             <!-- Botón -->
             <div class="button-container">
-              <ion-button expand="block" color="danger" shape="round" size="large" (click)="onRegister()">
+              <ion-button
+                expand="block"
+                color="danger"
+                shape="round"
+                size="large"
+                (click)="onRegister()">
                 Crear Cuenta
               </ion-button>
             </div>
