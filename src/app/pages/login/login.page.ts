@@ -73,7 +73,7 @@ export class LoginPage {
   async onForgotPassword(event: Event) {
     event.preventDefault();
     console.log('Olvidaste tu contraseña');
-    this.router.navigate(['/forgot-password']);
+    this.router.navigate(['/restablecer']);
   }
 
   goToRegister() {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonButton, IonIcon,
   IonGrid, IonRow, IonCol, IonFooter, IonLabel
@@ -27,9 +27,16 @@ import {
   ],
 })
 export class MenuPage {
-  menuOpen = false;   // 👈 estado del menú
+  menuOpen = false;
 
-  toggleMenu() {      // 👈 función que abre/cierra
+  constructor(private router: Router) {}
+
+  toggleMenu() {
     this.menuOpen = !this.menuOpen;
+  }
+
+  goToPerfil() {
+    this.router.navigate(['/perfil']);
+    this.menuOpen = false; // 🔹 Cierra el menú al navegar
   }
 }

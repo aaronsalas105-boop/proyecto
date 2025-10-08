@@ -1,0 +1,28 @@
+<ion-content [fullscreen]="true" class="reserview-content">
+  <div class="overlay"></div>
+
+  <div class="header">
+    <h2>Mis Reservas</h2>
+  </div>
+
+  <div *ngIf="cargando" class="loading">
+    Cargando reservas...
+  </div>
+
+  <ion-list *ngIf="!cargando && reservas.length > 0">
+    <ion-item *ngFor="let r of reservas" class="reserva-item">
+      <ion-label>
+        <h3>{{ r.sede || 'Sin sede' }} | {{ r.zona | uppercase }}</h3>
+        <p><strong>Fecha:</strong> {{ r.fecha | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Paquete:</strong> {{ r.paquete }}</p>
+        <p><strong>Festejados:</strong> {{ r.festejados }}</p>
+        <p><strong>Invitados:</strong> {{ r.invitados }}</p>
+        <p><strong>Estado:</strong> {{ r.estado }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="!cargando && reservas.length === 0" class="sin-reservas">
+    <p>No tienes reservas registradas aún.</p>
+  </div>
+</ion-content>

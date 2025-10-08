@@ -21,31 +21,31 @@
 
       <form>
         <ion-label position="stacked">Rut adulto responsable *</ion-label>
-        <ion-input placeholder="Ej: 12.345.678-9" type="text"></ion-input>
+        <ion-input placeholder="Ej: 12.345.678-9" type="text" [(ngModel)]="rut" name="rut"></ion-input>
 
         <div class="nombre-group">
           <div>
             <ion-label position="stacked">Nombre *</ion-label>
-            <ion-input placeholder="Ej: Juan"></ion-input>
+            <ion-input placeholder="Ej: Juan" [(ngModel)]="nombre" name="nombre"></ion-input>
           </div>
           <div>
             <ion-label position="stacked">Apellido *</ion-label>
-            <ion-input placeholder="Ej: Pérez"></ion-input>
+            <ion-input placeholder="Ej: Pérez" [(ngModel)]="apellido" name="apellido"></ion-input>
           </div>
           <div>
             <ion-label position="stacked">Teléfono *</ion-label>
-            <ion-input placeholder="+56 9 1234 5678" type="tel"></ion-input>
+            <ion-input placeholder="+56 9 1234 5678" type="tel" [(ngModel)]="telefono" name="telefono"></ion-input>
           </div>
         </div>
 
         <ion-label position="stacked">Dirección de correo electrónico *</ion-label>
-        <ion-input placeholder="ejemplo@email.com" type="email"></ion-input>
+        <ion-input placeholder="ejemplo@email.com" type="email" [(ngModel)]="email" name="email"></ion-input>
 
         <ion-label position="stacked">Comentarios adicionales (opcional)</ion-label>
-        <ion-textarea placeholder="Escribe aquí..."></ion-textarea>
+        <ion-textarea placeholder="Escribe aquí..." [(ngModel)]="comentarios" name="comentarios"></ion-textarea>
 
         <ion-item lines="none" class="terminos">
-          <ion-checkbox></ion-checkbox>
+          <ion-checkbox [(ngModel)]="aceptaTyC" name="aceptaTyC"></ion-checkbox>
           <ion-label>Acepto Términos y Condiciones *</ion-label>
         </ion-item>
 

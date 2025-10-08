@@ -313,3 +313,20 @@
   max-width: 260px;
   min-height: 50px;
 }
+
+/* Enlace Perfil en menú */
+.perfil-link {
+  background: #fff;
+  color: #d4151f;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.perfil-link:hover {
+  background: #f8f8f8;
+  color: #b60f1a;
+  transform: scale(1.03);
+}

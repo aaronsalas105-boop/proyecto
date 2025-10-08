@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IonContent, IonButton } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReservasService } from '../../services/reservas.service'; // ✅ Importa el servicio
 
 @Component({
   selector: 'app-formulariodos',
@@ -12,16 +13,18 @@ import { FormsModule } from '@angular/forms';
   imports: [IonContent, IonButton, CommonModule, FormsModule],
 })
 export class FormulariodosPage {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private reservasService: ReservasService
+  ) {}
 
-  siguiente(paquete: string) {
-    console.log('Siguiente presionado:', paquete);
+  // 👇 acepta los tres tipos posibles
+  siguiente(paquete: 'Super Fun' | 'Ultra Fun' | 'Mega Fun') {
+    this.reservasService.setPaquete(paquete);
 
-    if (paquete === 'Super Fun') {
-      this.router.navigate(['/formulariotres']);
-    } else {
-      console.log('Otro paquete:', paquete);
-      // Aquí luego puedes agregar navegación a otras páginas si quieres
-    }
+    console.log('✅ Paquete seleccionado:', paquete);
+    console.log('📦 Datos acumulados en la reserva:', this.reservasService.value);
+
+    this.router.navigate(['/formulariotres']);
   }
 }

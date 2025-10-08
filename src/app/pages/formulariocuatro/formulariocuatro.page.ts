@@ -11,6 +11,7 @@ import {
   IonItem
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { ReservasService } from '../../services/reservas.service'; // 👈 IMPORTANTE
 
 @Component({
   selector: 'app-formulariocuatro',
@@ -30,11 +31,21 @@ import { Router } from '@angular/router';
   ]
 })
 export class FormulariocuatroPage {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private reservasService: ReservasService // 👈 INYECTAMOS el servicio
+  ) {}
 
-  confirmarReserva() {
-    console.log('Reserva confirmada');
-    // 🔥 Aquí más adelante conectarás con Supabase o pantalla de confirmación
-    this.router.navigate(['/formulariocinco']); // Puedes cambiar el destino luego
+  async confirmarReserva() {
+    try {
+      const id = await this.reservasService.guardarEnSupabase(); // 🔥 Guarda en Supabase
+      console.log('✅ Reserva guardada con ID:', id);
+
+      // Navega al resumen (formulario 5)
+      this.router.navigate(['/formulariocinco']);
+    } catch (error) {
+      console.error('❌ Error al guardar reserva:', error);
+      alert('Ocurrió un error al guardar tu reserva. Revisa tu conexión o inicia sesión nuevamente.');
+    }
   }
 }

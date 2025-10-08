@@ -73,6 +73,18 @@ export const routes: Routes = [
     path: 'perfil',
     loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
   },
+  {
+    path: 'restablecer',
+    loadComponent: () => import('./pages/restablecer/restablecer.page').then( m => m.RestablecerPage)
+  },
+  {
+    path: 'new',
+    loadComponent: () => import('./pages/new/new.page').then( m => m.NewPage)
+  },
+  {
+    path: 'reserview',
+    loadComponent: () => import('./pages/reserview/reserview.page').then( m => m.ReserviewPage)
+  },
 ];
 
 

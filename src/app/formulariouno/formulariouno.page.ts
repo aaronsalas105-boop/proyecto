@@ -14,7 +14,8 @@ import {
   IonInput,
   IonDatetime,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router'; // 👈 importa Router aquí
+import { Router } from '@angular/router';
+import { ReservasService } from '../services/reservas.service';
 
 @Component({
   selector: 'app-formulariouno',
@@ -39,10 +40,8 @@ import { Router } from '@angular/router'; // 👈 importa Router aquí
 })
 export class FormulariounoPage {
   zonaSeleccionada: 'rm' | 'regiones' = 'rm';
-
   localesRM = ['La Florida', 'Los Trapenses', 'Open Kennedy', 'Plaza Norte', 'Plaza Oeste', 'Plaza Sur'];
   localesRegiones = ['Antofagasta', 'Concepción', 'La Serena', 'Puerto Montt', 'Temuco', 'Viña del Mar'];
-
   localesVisibles = this.localesRM;
 
   localSeleccionado: string | null = null;
@@ -50,8 +49,7 @@ export class FormulariounoPage {
   invitados = 0;
   fechaISO: string | null = null;
 
-  // 👇 inyecta Router aquí
-  constructor(private router: Router) {}
+  constructor(private router: Router, private reservas: ReservasService) {}
 
   onZonaChange(valor: 'rm' | 'regiones') {
     this.zonaSeleccionada = valor;
@@ -67,16 +65,19 @@ export class FormulariounoPage {
     this.fechaISO = valor ? String(valor) : null;
   }
 
-  // 👇 este método ahora redirige a formulariodos
   siguiente() {
-    console.log('Datos ->', {
-      zona: this.zonaSeleccionada,
-      local: this.localSeleccionado,
-      festejados: this.festejados,
-      invitados: this.invitados,
-      fecha: this.fechaISO,
-    });
+    // Guardar en el servicio los datos del paso 1
+    this.reservas.setPaso1(
+      this.zonaSeleccionada,
+      this.localSeleccionado,
+      this.festejados,
+      this.invitados,
+      this.fechaISO
+    );
 
+    console.log('Datos guardados en ReservasService:', this.reservas.value);
+
+    // Pasar al siguiente formulario
     this.router.navigate(['/formulariodos']);
   }
 }

@@ -17,13 +17,22 @@
             android:launchMode="singleTask"
             android:exported="true">
 
+            <!-- 🔹 Intent principal: inicia la app normalmente -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <!-- 🔹 Deep link Supabase: permite abrir la app con capacitor://localhost/... -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="capacitor" android:host="localhost" />
+            </intent-filter>
         </activity>
 
+        <!-- File Provider (para acceso a archivos si lo usas en cámara o storage) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -31,11 +40,11 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 
-    <!-- Permissions -->
-
+    <!-- Permiso de Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
