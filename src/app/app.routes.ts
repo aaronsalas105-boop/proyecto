@@ -69,6 +69,10 @@ export const routes: Routes = [
     path: 'formulariocinco',
     loadComponent: () => import('./pages/formulariocinco/formulariocinco.page').then( m => m.FormulariocincoPage)
   },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/perfil/perfil.page').then( m => m.PerfilPage)
+  },
 ];
 
 

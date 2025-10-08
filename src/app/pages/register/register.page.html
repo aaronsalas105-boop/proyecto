@@ -28,6 +28,14 @@
             <!-- Inputs -->
             <ion-item lines="none" class="custom-input">
               <ion-input
+                placeholder="Nombre completo"
+                type="text"
+                [(ngModel)]="nombre">
+              </ion-input>
+            </ion-item>
+
+            <ion-item lines="none" class="custom-input">
+              <ion-input
                 placeholder="Correo"
                 type="email"
                 [(ngModel)]="email">
@@ -47,6 +55,14 @@
                 placeholder="Teléfono (opcional)"
                 type="tel"
                 [(ngModel)]="phone">
+              </ion-input>
+            </ion-item>
+
+            <ion-item lines="none" class="custom-input">
+              <ion-input
+                placeholder="URL de foto (opcional)"
+                type="url"
+                [(ngModel)]="avatar_url">
               </ion-input>
             </ion-item>
 

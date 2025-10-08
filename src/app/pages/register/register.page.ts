@@ -30,10 +30,14 @@ import { AuthService } from '../../services/auth.service';
     IonItem,
   ],
 })
+
+//definimos propiedades de la pag, email, password y phone y se asocian a los imputs de la pagina
 export class RegisterPage {
   email = '';
   password = '';
   phone = '';
+  nombre = '';
+  avatar_url = ''; // URL opcional para foto de perfil
 
   constructor(private router: Router, private auth: AuthService) {}
 
@@ -45,8 +49,14 @@ export class RegisterPage {
     }
 
     try {
-      // Registrar usuario en Supabase
-      const { user } = await this.auth.signUp(this.email, this.password);
+      // Registrar usuario en Supabase con datos adicionales
+      const { user } = await this.auth.signUp(
+        this.email,
+        this.password,
+        this.nombre,
+        this.phone,
+        this.avatar_url
+      );
 
       if (user) {
         console.log('✅ Usuario registrado:', user);

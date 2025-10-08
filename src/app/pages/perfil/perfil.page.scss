@@ -1,0 +1,87 @@
+.perfil-content {
+  --background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ✅ centrado vertical */
+  text-align: center;
+}
+
+.perfil-card {
+  background-color: #c8102e;
+  color: #fff;
+  border-radius: 1.5rem;
+  padding: 3rem 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.perfil-logo {
+  width: 100px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.perfil-foto-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 1rem 0 1.5rem 0;
+  border: 3px solid #fff;
+}
+
+.perfil-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perfil-nombre {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.perfil-info {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: left;
+}
+
+.perfil-info p {
+  margin: 0.4rem 0;
+}
+
+.perfil-barcode {
+  background: #fff;
+  color: #000;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0;
+  margin: 1.5rem 0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  width: 100%;
+  text-align: center;
+}
+
+.cerrar-btn {
+  --background: #fff;
+  --color: #c8102e;
+  --border-radius: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.4);
+}

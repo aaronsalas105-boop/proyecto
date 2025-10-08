@@ -5,11 +5,18 @@ import { SupabaseService } from './supabase.service';
 export class AuthService {
   constructor(private supabase: SupabaseService) {}
 
-  // 🟢 Registrar usuario nuevo
-  async signUp(email: string, password: string) {
+  // 🟢 Registrar usuario nuevo con datos adicionales
+  async signUp(email: string, password: string, nombre?: string, telefono?: string, avatar_url?: string) {
     const { data, error } = await this.supabase.client.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          nombre: nombre || '',
+          telefono: telefono || '',
+          avatar_url: avatar_url || '',
+        },
+      },
     });
     if (error) throw error;
     return data;

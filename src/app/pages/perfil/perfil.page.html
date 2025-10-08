@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true" class="perfil-content">
+  <div class="perfil-card">
+    <!-- 🔺 Logo arriba -->
+    <img src="/assets/img/logo1.png" alt="Logo Chuck E. Cheese" class="perfil-logo" />
+
+    <!-- 🔻 Foto de perfil debajo del logo -->
+    <div class="perfil-foto-container">
+      <img
+        [src]="userAvatar || '/assets/img/default-avatar.png'"
+        alt="Foto de perfil"
+        class="perfil-foto"
+      />
+    </div>
+
+    <!-- Datos principales -->
+    <h2 class="perfil-nombre">{{ userName || 'Nombre del Usuario' }}</h2>
+
+    <div class="perfil-info">
+      <p><strong>Correo:</strong> {{ userEmail || 'usuario@ejemplo.com' }}</p>
+      <p><strong>Teléfono:</strong> {{ userPhone || '+56 9 0000 0000' }}</p>
+      <p><strong>Sede:</strong> Plaza Norte</p>
+      <p><strong>Ciudad:</strong> Santiago de Chile</p>
+    </div>
+
+    <!-- Código o ID -->
+    <div class="perfil-barcode">
+      <div class="codigo">{{ userId || '20550454-0' }}</div>
+    </div>
+
+    <!-- Botón de cierre de sesión -->
+    <ion-button expand="block" color="danger" class="cerrar-btn" (click)="onLogout()">
+      Cerrar sesión
+    </ion-button>
+  </div>
+</ion-content>

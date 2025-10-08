@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'; //convierte la class en un componenete angular, o sea una pagina 
+import { Router } from '@angular/router';//permite navegar entre paginas
+
+//ambos activan funciones de angular y permite usar ngmodel para capturar datos de los imputs 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+
+//importa componentes de ionic
 import {
   IonContent,
   IonGrid,
@@ -12,9 +17,10 @@ import {
   IonItem,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { AuthService } from '../../services/auth.service';
 
-@Component({
+import { AuthService } from '../../services/auth.service';//importa el servicio  que creamos para conectar a supabase
+
+@Component({ //decorador con con nombre de pagina, su html, scss y standalone. Crea el componente, osea la pagina lo es
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
@@ -32,11 +38,13 @@ import { AuthService } from '../../services/auth.service';
     IonIcon,
   ],
 })
+
+//definimos propiedades de la pag, email y password y se asocian a los imputs de la pagina
 export class LoginPage {
   email = '';
   password = '';
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) {} //constructor que inicializa las propiedades y el servicio de autenticacion
 
   async onLogin() {
     // ✅ 1. Validar campos vacíos
@@ -44,7 +52,7 @@ export class LoginPage {
       alert('Por favor, ingresa tu correo y contraseña.');
       return;
     }
-
+    
     try {
       // ✅ 2. Llamar al servicio Supabase
       const { user } = await this.auth.signIn(this.email, this.password);
