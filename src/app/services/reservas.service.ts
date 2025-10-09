@@ -6,12 +6,9 @@ export interface ReservaDraft {
   zona?: 'rm' | 'regiones';
   sede?: string | null;
   fechaISO?: string | null;
-  festejados?: number;   // 1 o 2
+  festejados?: number;
   invitados?: number;
-
   paquete?: 'Super Fun' | 'Ultra Fun' | 'Mega Fun';
-
-  // Adulto
   rut?: string;
   nombreAdulto?: string;
   apellidoAdulto?: string;
@@ -19,16 +16,12 @@ export interface ReservaDraft {
   emailAdulto?: string;
   comentarios?: string;
   aceptaTyC?: boolean;
-
-  // Festejado
   nombreNino?: string;
   apellidoNino?: string;
   edad?: number | null;
   fechaNacISO?: string | null;
   colegio?: string | null;
   noEscolar?: boolean;
-
-  // Cálculos
   subtotal?: number | null;
   montoAbonar?: number | null;
 }
@@ -43,7 +36,7 @@ export class ReservasService {
     private auth: AuthService
   ) {}
 
-  /** 🔹 Acceso público al cliente Supabase (para otras páginas) */
+  /** 🔹 Acceso público al cliente Supabase */
   public get client() {
     return this.supabase.client;
   }
@@ -53,17 +46,18 @@ export class ReservasService {
     return this.auth;
   }
 
-  /** 🔹 Reset de borrador */
+  /** 🔹 Reset del borrador */
   reset() {
     this.draft = {};
     this.ultimaReservaId = null;
+    localStorage.removeItem('ultimaReservaId');
   }
 
   get value(): ReservaDraft {
     return this.draft;
   }
 
-  /** 🔹 Paso 1: Datos base */
+  /** 🔹 Paso 1 */
   setPaso1(
     zona: 'rm' | 'regiones',
     sede: string | null,
@@ -78,12 +72,12 @@ export class ReservasService {
     this.draft.fechaISO = fechaISO || null;
   }
 
-  /** 🔹 Paso 2: Selección de paquete */
+  /** 🔹 Paso 2 */
   setPaquete(paquete: 'Super Fun' | 'Ultra Fun' | 'Mega Fun') {
     this.draft.paquete = paquete;
   }
 
-  /** 🔹 Paso 3: Datos del adulto responsable */
+  /** 🔹 Paso 3 */
   setAdulto(data: {
     rut: string;
     nombre: string;
@@ -102,7 +96,7 @@ export class ReservasService {
     this.draft.aceptaTyC = !!data.aceptaTyC;
   }
 
-  /** 🔹 Paso 4: Datos del festejado */
+  /** 🔹 Paso 4 */
   setNino(data: {
     nombre: string;
     apellido: string;
@@ -119,7 +113,7 @@ export class ReservasService {
     this.draft.noEscolar = !!data.noEscolar;
   }
 
-  /** 🔹 Cálculo de precios */
+  /** 🔹 Calcular precios */
   private precioPorPaquete(paquete?: string): number {
     switch (paquete) {
       case 'Super Fun': return 14990;
@@ -133,10 +127,10 @@ export class ReservasService {
     const totalNinos = (this.draft.festejados ?? 1) + (this.draft.invitados ?? 0);
     const precioUnit = this.precioPorPaquete(this.draft.paquete);
     this.draft.subtotal = totalNinos * precioUnit;
-    this.draft.montoAbonar = 40000; // anticipo simulado
+    this.draft.montoAbonar = 40000;
   }
 
-  /** 🔹 Inserta la reserva completa en Supabase */
+  /** 🔹 Insertar reserva */
   async guardarEnSupabase(): Promise<string> {
     this.calcularMontos();
     const user = await this.auth.getUser();
@@ -151,9 +145,7 @@ export class ReservasService {
         fecha: this.draft.fechaISO,
         festejados: this.draft.festejados,
         invitados: this.draft.invitados,
-
         paquete: this.draft.paquete,
-
         rut_adulto: this.draft.rut,
         nombre_adulto: this.draft.nombreAdulto,
         apellido_adulto: this.draft.apellidoAdulto,
@@ -161,14 +153,12 @@ export class ReservasService {
         email_adulto: this.draft.emailAdulto,
         comentarios: this.draft.comentarios,
         acepta_tyc: this.draft.aceptaTyC,
-
         nombre_festejado: this.draft.nombreNino,
         apellido_festejado: this.draft.apellidoNino,
         edad_festejado: this.draft.edad,
         fecha_nac: this.draft.fechaNacISO,
         colegio: this.draft.colegio,
         no_escolar: this.draft.noEscolar,
-
         subtotal: this.draft.subtotal,
         monto_abonar: this.draft.montoAbonar,
         estado: 'pendiente'
@@ -177,11 +167,12 @@ export class ReservasService {
       .single();
 
     if (error) throw error;
-    this.ultimaReservaId = data.id;
+
+    this.setUltimaReservaId(data.id); // ✅ guardamos en memoria + localStorage
     return data.id as string;
   }
 
-  /** 🔹 Obtiene todas las reservas del usuario actual */
+  /** 🔹 Obtener reservas del usuario actual */
   async obtenerReservasUsuario() {
     const user = await this.auth.getUser();
     if (!user) throw new Error('Usuario no autenticado');
@@ -194,5 +185,34 @@ export class ReservasService {
 
     if (error) throw error;
     return data;
+  }
+
+  /** 🔹 Eliminar reserva */
+  async eliminarReserva(id: string) {
+    console.log('🧩 Intentando borrar ID:', id);
+
+    const { data, error } = await this.client
+      .from('reservas')
+      .delete()
+      .eq('id', id)
+      .select();
+
+    if (error) {
+      console.error('❌ Error al eliminar:', error);
+      throw error;
+    }
+    console.log('✅ Eliminada en BD:', data);
+    return true;
+  }
+
+  // 🆕 🔹 Guardar el ID de la última reserva también en localStorage
+  setUltimaReservaId(id: string) {
+    this.ultimaReservaId = id;
+    localStorage.setItem('ultimaReservaId', id);
+  }
+
+  // 🆕 🔹 Recuperar la última reserva desde memoria o localStorage
+  getUltimaReservaId(): string | null {
+    return this.ultimaReservaId || localStorage.getItem('ultimaReservaId');
   }
 }

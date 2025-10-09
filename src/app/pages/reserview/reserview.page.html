@@ -1,14 +1,21 @@
 <ion-content [fullscreen]="true" class="reserview-content">
   <div class="overlay"></div>
 
+  <!-- 🔹 Botón volver -->
+  <button class="btn-volver" (click)="volver()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </button>
+
   <div class="header">
     <h2>Mis Reservas</h2>
   </div>
 
+  <!-- Cargando -->
   <div *ngIf="cargando" class="loading">
     Cargando reservas...
   </div>
 
+  <!-- Lista de reservas -->
   <ion-list *ngIf="!cargando && reservas.length > 0">
     <ion-item *ngFor="let r of reservas" class="reserva-item">
       <ion-label>
@@ -19,9 +26,16 @@
         <p><strong>Invitados:</strong> {{ r.invitados }}</p>
         <p><strong>Estado:</strong> {{ r.estado }}</p>
       </ion-label>
+
+      <!-- 🔴 Botón de cancelar -->
+      <ion-button color="danger" fill="solid" shape="round" size="small"
+        (click)="cancelarReserva(r.id)">
+        Cancelar
+      </ion-button>
     </ion-item>
   </ion-list>
 
+  <!-- Sin reservas -->
   <div *ngIf="!cargando && reservas.length === 0" class="sin-reservas">
     <p>No tienes reservas registradas aún.</p>
   </div>

@@ -1,5 +1,4 @@
 <ion-content [fullscreen]="true" class="formulario-content">
-  <!-- Tarjeta principal -->
   <div class="form-box">
     <div class="top">
       <img src="assets/img/confirma2.png" alt="Chuck E" class="form-logo" />
@@ -10,25 +9,23 @@
         ¡RESERVA <span style="color:#00bcd4;">LISTA!</span>
       </h3>
 
-      <!-- Resumen de la reserva -->
       <div class="gray-inner-box">
         <h4 class="section-subtitle">Resumen de la Reserva</h4>
 
         <div class="tabla-resumen">
           <div class="col">
             <p class="titulo">Producto</p>
-            <p>ULTRA FUN x 11</p>
+            <p>{{ reserva?.paquete || 'Super Fun x 11' }}</p>
             <p>Monto a abonar</p>
           </div>
           <div class="col">
             <p class="titulo">Subtotal</p>
-            <p class="rojo">$186.890</p>
-            <p class="rojo">$40.000</p>
+            <p class="rojo">{{ reserva?.monto_total | currency:'$' }}</p>
+            <p class="rojo">{{ reserva?.monto_abonar | currency:'$' }}</p>
           </div>
         </div>
       </div>
 
-      <!-- Webpay info -->
       <div class="gray-inner-box transbank">
         <div class="transbank-header">
           <span>Transbank Webpay Plus</span>
@@ -36,23 +33,23 @@
         </div>
 
         <p class="texto-transbank">
-          Permite el pago de productos y/o servicios, con tarjetas de crédito,
-          débito y prepago a través de Webpay Plus
+          Permite el pago de productos y/o servicios con tarjetas de crédito,
+          débito y prepago a través de Webpay Plus.
         </p>
 
         <p class="nota">
           <ion-icon name="alert-circle-outline"></ion-icon>
-          Pago de <span>$40.000</span> corresponde a la reserva, la diferencia se paga el día del cumpleaños.
-          Monto total podría variar según modificaciones solicitadas por usted.
+          Pago de <span>{{ reserva?.monto_abonar | currency:'$' }}</span> corresponde a la reserva.
+          La diferencia se paga el día del evento.
         </p>
       </div>
 
       <div class="actions">
-        <ion-button expand="block" class="agenda-btn rojo" (click)="pagar()">
-          Pagar reserva
+        <ion-button expand="block" color="success" (click)="pagarReserva()">
+          PAGAR RESERVA
         </ion-button>
-        <ion-button expand="block" class="agenda-btn morado" routerLink="/formulariocuatro">
-          Volver
+        <ion-button expand="block" class="agenda-btn morado" (click)="volver()">
+          VOLVER
         </ion-button>
       </div>
     </div>

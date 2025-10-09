@@ -1,64 +1,100 @@
 .reserview-content {
-    --background: none;
-    background: url('/assets/img/fondo2.png') center center / cover no-repeat;
-    position: relative;
-    min-height: 100%;
-    padding: 5vh 4vw;
+  --background: none;
+  background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+  position: relative;
+  min-height: 100%;
+  padding: 5vh 4vw;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+/* 🔹 Botón volver */
+.btn-volver {
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  ion-icon {
+    font-size: 1.3rem;
+    color: #b81414;
   }
-  
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.85);
-    z-index: 1;
+
+  &:active {
+    transform: scale(0.92);
   }
-  
-  .header {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin-bottom: 3vh;
-  
-    h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #b81414;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 3vh;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #b81414;
+  }
+}
+
+.loading,
+.sin-reservas {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #444;
+  font-weight: 500;
+  margin-top: 10vh;
+}
+
+ion-list {
+  position: relative;
+  z-index: 2;
+}
+
+.reserva-item {
+  background: white;
+  border-radius: 1.5rem;
+  margin-bottom: 2vh;
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+
+  ion-label {
+    padding: 1rem;
+
+    h3 {
+      font-size: 1.2rem;
+      color: #222;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
     }
   }
-  
-  .loading,
-  .sin-reservas {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #444;
-    font-weight: 500;
-    margin-top: 10vh;
+
+  ion-button {
+    margin: 0.5rem 1rem 1rem;
+    --border-radius: 1rem;
+    font-weight: 600;
+    text-transform: none;
   }
-  
-  ion-list {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .reserva-item {
-    background: white;
-    border-radius: 1.5rem;
-    margin-bottom: 2vh;
-    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
-  
-    ion-label {
-      padding: 1rem;
-      h3 {
-        font-size: 1.2rem;
-        color: #222;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-      }
-      p {
-        font-size: 0.9rem;
-        margin: 0.2rem 0;
-      }
-    }
-  }
-  
+}

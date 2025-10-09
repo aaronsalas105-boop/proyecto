@@ -32,16 +32,26 @@ export class AuthService {
     return data;
   }
 
+  // 🔵 Verificar sesión actual (al iniciar la app o recargar)
+  async getUser() {
+    const { data, error } = await this.supabase.client.auth.getUser();
+    if (error) {
+      console.warn('⚠️ Error al obtener usuario:', error.message);
+      return null;
+    }
+    return data.user;
+  }
+
+  // 🟡 Escuchar cambios en el estado de autenticación
+  onAuthChange(callback: (event: string, session: any) => void) {
+    return this.supabase.client.auth.onAuthStateChange((_event, session) => {
+      callback(_event, session);
+    });
+  }
+
   // 🔴 Cerrar sesión
   async signOut() {
     const { error } = await this.supabase.client.auth.signOut();
     if (error) throw error;
-  }
-
-  // 🔍 Obtener usuario actual (si está logueado)
-  async getUser() {
-    const { data, error } = await this.supabase.client.auth.getUser();
-    if (error) throw error;
-    return data.user;
   }
 }

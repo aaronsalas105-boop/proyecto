@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonList, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 import { ReservasService } from '../../services/reservas.service';
 
 @Component({
@@ -8,13 +9,16 @@ import { ReservasService } from '../../services/reservas.service';
   templateUrl: './reserview.page.html',
   styleUrls: ['./reserview.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonList, IonItem, IonLabel],
+  imports: [CommonModule, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon],
 })
 export class ReserviewPage implements OnInit {
   reservas: any[] = [];
   cargando = true;
 
-  constructor(private reservasService: ReservasService) {}
+  constructor(
+    private reservasService: ReservasService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     try {
@@ -25,13 +29,11 @@ export class ReserviewPage implements OnInit {
         return;
       }
 
-      // ✅ Usa el cliente correcto
       const { data, error } = await this.reservasService.client
-      .from('reservas')
-      .select('*')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false });
-    
+        .from('reservas')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
 
@@ -42,5 +44,22 @@ export class ReserviewPage implements OnInit {
     } finally {
       this.cargando = false;
     }
+  }
+
+  async cancelarReserva(id: string) {
+    if (!id) { console.warn('ID vacío'); return; }
+
+    try {
+      await this.reservasService.eliminarReserva(id);
+      this.reservas = this.reservas.filter(r => r.id !== id); // quita del listado
+    } catch (e) {
+      console.error(e);
+      alert('No se pudo cancelar la reserva.');
+    }
+  }
+
+  // 🔹 Botón volver
+  volver() {
+    this.router.navigate(['/food']);
   }
 }
