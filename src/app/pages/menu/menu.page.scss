@@ -330,3 +330,16 @@
   color: #b60f1a;
   transform: scale(1.03);
 }
+
+/* Centrado visual equilibrado */
+.main-container {
+  margin-top: 3vh !important; /* 👈 ni tan arriba ni tan abajo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh; /* más flexible que 60vh */
+  gap: 22px;
+}
+
+

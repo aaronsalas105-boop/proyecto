@@ -1,15 +1,15 @@
 .reserview-content {
   --background: none;
   background: url('/assets/img/fondo2.png') center center / cover no-repeat;
-  position: relative;
   min-height: 100%;
-  padding: 5vh 4vw;
+  padding: 5vh 5vw;
+  position: relative;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.8);
   z-index: 1;
 }
 
@@ -19,82 +19,150 @@
   top: 2vh;
   left: 2vw;
   z-index: 3;
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   border: none;
   border-radius: 50%;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.15s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 
   ion-icon {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #b81414;
-  }
-
-  &:active {
-    transform: scale(0.92);
   }
 }
 
+/* 🔹 Encabezado */
 .header {
   position: relative;
   z-index: 2;
   text-align: center;
-  margin-bottom: 3vh;
+  margin-top: 5vh;
 
   h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
     color: #b81414;
+    font-size: 1.8rem;
+    font-weight: 800;
   }
 }
 
-.loading,
-.sin-reservas {
+/* 🔹 Tarjeta de reserva */
+.reserva-card {
   position: relative;
   z-index: 2;
-  text-align: center;
-  color: #444;
-  font-weight: 500;
-  margin-top: 10vh;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-ion-list {
-  position: relative;
-  z-index: 2;
+.codigo {
+  text-align: right;
+  color: #6a1b9a;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
 }
 
-.reserva-item {
-  background: white;
-  border-radius: 1.5rem;
-  margin-bottom: 2vh;
-  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+.info p {
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0.3rem 0;
+}
 
-  ion-label {
-    padding: 1rem;
+.subtitulo {
+  color: #6a1b9a;
+  font-weight: 700;
+  margin-top: 1.4rem;
+  font-size: 1.1rem;
+}
 
-    h3 {
-      font-size: 1.2rem;
-      color: #222;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+/* Inputs */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
 
-    p {
-      font-size: 0.9rem;
-      margin: 0.2rem 0;
-    }
-  }
-
-  ion-button {
-    margin: 0.5rem 1rem 1rem;
-    --border-radius: 1rem;
+  label {
     font-weight: 600;
-    text-transform: none;
+    font-size: 0.9rem;
+    color: #444;
   }
+
+  input {
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extras */
+.extras {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+
+  label {
+    font-size: 0.9rem;
+    color: #333;
+
+    input {
+      margin-right: 6px;
+      accent-color: #b81414;
+    }
+  }
+}
+
+/* Total */
+.total {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #ddd;
+
+  p {
+    font-weight: 700;
+    color: #000;
+  }
+}
+
+/* 🔹 Botones principales (Actualizar + Cancelar) */
+.btn-actualizar,
+.btn-cancelar {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0.8rem auto 0;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Morado - Actualizar */
+.btn-actualizar {
+  --background: #6a1b9a;
+  --color: #fff;
+}
+
+/* Rojo - Cancelar */
+.btn-cancelar {
+  --background: #d4151f;
+  --color: #fff;
+}
+
+/* Nota */
+.nota {
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 1rem;
+  line-height: 1.2;
 }

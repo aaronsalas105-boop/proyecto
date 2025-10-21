@@ -1,0 +1,125 @@
+@use '../juego1/juego1.page' as *;
+
+/* ====== FONDO GENERAL ====== */
+.main-content {
+  --background: none;
+  background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== FONDO OVALADO SUPERIOR ====== */
+.top-curve {
+  position: relative;
+  width: 100%;
+  height: 190px; /* igual que en juego1 */
+  background: #fff;
+  border-bottom-left-radius: 100% 40%;
+  border-bottom-right-radius: 100% 40%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .curve-inner {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 0.8rem;
+  }
+}
+
+/* ====== ENCABEZADO ====== */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh;
+
+  .logo {
+    width: 170px;
+    height: auto;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #662d91;
+  font-weight: 700;
+  margin-top: 0.8rem;
+}
+
+/* ====== CONTENIDO DEL RESUMEN ====== */
+.resumen-compra {
+  background: transparent;
+  text-align: center;
+  margin-top: 2.5rem; /* baja el contenido central */
+  width: 100%;
+
+  .resumen-titulo {
+    color: #662d91;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .playpass-img {
+    width: 240px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.2rem;
+  }
+
+  .resumen-box {
+    background: #f2f2f2;
+    width: 85%;
+    margin: 0 auto 1.8rem;
+    border-radius: 15px;
+    padding: 1rem;
+
+    .resumen-item {
+      display: flex;
+      justify-content: space-between;
+      color: #662d91;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .pago-info {
+    width: 85%;
+    margin: 0 auto 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    color: #333;
+    line-height: 1.3;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+
+    .webpay-img {
+      width: 140px;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .btn-pagar {
+    width: 85%;
+    margin: 0 auto;
+    display: block;
+    --background: #662d91;
+    --color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(102, 45, 145, 0.3);
+  }
+}

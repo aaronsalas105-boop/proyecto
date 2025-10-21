@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true" class="main-content">
+  <div class="background"></div>
+
+  <!-- 🔹 Fondo ovalado superior -->
+  <div class="top-curve">
+    <div class="curve-inner">
+      <div class="top-bar">
+        <img src="/assets/img/logo1.png" alt="Chuck E. Cheese" class="logo" />
+      </div>
+      <h1 class="title">¡Comienza a jugar!</h1>
+    </div>
+  </div>
+
+  <!-- Resumen de compra -->
+  <div class="resumen-compra">
+    <h2 class="resumen-titulo">Resumen de compra</h2>
+
+    <img src="/assets/img/playpass.png" alt="Play Pass" class="playpass-img" />
+
+    <div class="resumen-box">
+      <div class="resumen-item">
+        <span>Producto</span>
+        <span>150 {{ productoSeleccionado }}</span>
+      </div>
+      <div class="resumen-item">
+        <span>Total</span>
+        <span>$36.990</span>
+      </div>
+    </div>
+
+    <div class="pago-info">
+      <img src="/assets/img/webpay.png" alt="WebPay" class="webpay-img" />
+      <p>
+        Permite el pago de productos y/o servicios con tarjetas de crédito,
+        débito y prepago a través de Webpay Plus.
+      </p>
+    </div>
+
+    <ion-button expand="block" class="btn-pagar">Pagar</ion-button>
+  </div>
+</ion-content>

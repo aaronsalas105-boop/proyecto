@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // 👈 agregado para ngModel
 import { IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { ReservasService } from '../../services/reservas.service';
@@ -9,7 +10,16 @@ import { ReservasService } from '../../services/reservas.service';
   templateUrl: './reserview.page.html',
   styleUrls: ['./reserview.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonList, IonItem, IonLabel, IonButton, IonIcon],
+  imports: [
+    CommonModule,
+    FormsModule, // 👈 agregado (requerido para [(ngModel)])
+    IonContent,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonButton,
+    IonIcon
+  ],
 })
 export class ReserviewPage implements OnInit {
   reservas: any[] = [];

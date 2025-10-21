@@ -1,0 +1,164 @@
+.main-content {
+  --background: none;
+  background: url('/assets/img/fondo2.png') center center / cover no-repeat;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== FONDO OVALADO SUPERIOR ====== */
+.top-curve {
+  position: relative;
+  width: 100%;
+  height: 190px; /* 🔹 aumentado para dar aire */
+  background: #fff;
+  border-bottom-left-radius: 100% 40%;
+  border-bottom-right-radius: 100% 40%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .curve-inner {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 0.8rem; /* 🔹 baja logo + texto */
+  }
+}
+
+/* Encabezado */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2vh; /* 🔹 da más espacio arriba */
+
+  .logo {
+    width: 170px;
+    height: auto;
+  }
+}
+
+/* Título */
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #662d91;
+  font-weight: 700;
+  margin-top: 0.8rem; /* 🔹 más separado del logo */
+}
+
+/* Selector */
+.selector {
+  background: #f2f2f2;
+  border-radius: 15px;
+  margin: 2.2rem auto 1.5rem;
+  width: 85%;
+  padding: 1rem 0;
+  text-align: center;
+
+  h2 {
+    color: #662d91;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-around;
+
+    .option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 600;
+      color: #4a4a4a;
+      background: none;
+      border: none;
+
+      .circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 2px solid #d32f2f;
+        margin-bottom: 0.5rem;
+
+        &.selected {
+          background: #d32f2f;
+        }
+      }
+
+      &.active {
+        color: #662d91;
+      }
+    }
+  }
+}
+
+/* Tabla precios */
+.tabla-precios {
+  background: #f2f2f2;
+  width: 85%;
+  margin: 0 auto;
+  border-radius: 15px;
+  padding: 1rem;
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    color: #662d91;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.4rem 0;
+
+    span {
+      font-size: 1.2rem;
+      color: #662d91;
+      font-weight: 600;
+    }
+
+    button {
+      border: none;
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-morado {
+      background-color: #662d91;
+    }
+
+    .btn-rojo {
+      background-color: #e53935;
+    }
+  }
+}
+
+/* Botón siguiente */
+.btn-siguiente {
+  width: 85%;
+  margin: 2rem auto;
+  display: block;
+  --background: #662d91;
+  --color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 14px rgba(102, 45, 145, 0.3);
+}

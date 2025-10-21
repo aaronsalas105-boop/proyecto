@@ -27,9 +27,16 @@ import {
   ],
 })
 export class MapPage {
-  menuOpen = false;   // 👈 estado inicial del menú
+  menuOpen = false;
 
-  toggleMenu() {      // 👈 función para abrir/cerrar
+  toggleMenu() {
     this.menuOpen = !this.menuOpen;
+  }
+
+  // 🔹 Abre Google Maps con la dirección seleccionada
+  abrirMaps(direccion: string) {
+    const query = encodeURIComponent(direccion);
+    const url = `https://www.google.com/maps/search/?api=1&query=${query}`;
+    window.open(url, '_blank');
   }
 }

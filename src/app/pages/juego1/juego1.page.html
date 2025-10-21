@@ -1,0 +1,77 @@
+<ion-content [fullscreen]="true" class="main-content">
+  <!-- Fondo -->
+  <div class="background"></div>
+
+  <!-- 🔹 Fondo ovalado superior con logo y título -->
+  <div class="top-curve">
+    <div class="curve-inner">
+      <div class="top-bar">
+        <img src="/assets/img/logo1.png" alt="Chuck E. Cheese" class="logo" />
+      </div>
+      <h1 class="title">¡Comienza a jugar!</h1>
+    </div>
+  </div>
+
+  <!-- Selector Minutos/Puntos -->
+  <div class="selector">
+    <h2>¿Minutos o Puntos?</h2>
+    <div class="options">
+      <button
+        class="option"
+        [class.active]="modoSeleccionado === 'minutos'"
+        (click)="seleccionarModo('minutos')"
+      >
+        <div class="circle" [class.selected]="modoSeleccionado === 'minutos'"></div>
+        Minutos
+      </button>
+
+      <button
+        class="option"
+        [class.active]="modoSeleccionado === 'puntos'"
+        (click)="seleccionarModo('puntos')"
+      >
+        <div class="circle" [class.selected]="modoSeleccionado === 'puntos'"></div>
+        Puntos
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla de precios -->
+  <div class="tabla-precios">
+    <div class="header-row">
+      <span>Cantidad</span>
+      <span>Precio</span>
+    </div>
+
+    <div class="fila">
+      <span>150</span>
+      <button class="btn-morado">$36.990</button>
+    </div>
+    <div class="fila">
+      <span>120</span>
+      <button class="btn-rojo">$30.990</button>
+    </div>
+    <div class="fila">
+      <span>90</span>
+      <button class="btn-rojo">$25.990</button>
+    </div>
+    <div class="fila">
+      <span>60</span>
+      <button class="btn-rojo">$20.990</button>
+    </div>
+    <div class="fila">
+      <span>35</span>
+      <button class="btn-rojo">$16.990</button>
+    </div>
+  </div>
+
+  <!-- Botón siguiente -->
+  <ion-button
+    expand="block"
+    class="btn-siguiente"
+    [routerLink]="['/juego2']"
+    [queryParams]="{ modo: modoSeleccionado }"
+  >
+    Siguiente
+  </ion-button>
+</ion-content>

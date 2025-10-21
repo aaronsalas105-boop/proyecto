@@ -7,33 +7,57 @@
   </button>
 
   <div class="header">
-    <h2>Mis Reservas</h2>
+    <h2>Detalles de tu Reserva</h2>
   </div>
 
-  <!-- Cargando -->
-  <div *ngIf="cargando" class="loading">
-    Cargando reservas...
-  </div>
+  <!-- Estado de carga -->
+  <div *ngIf="cargando" class="loading">Cargando reserva...</div>
 
-  <!-- Lista de reservas -->
-  <ion-list *ngIf="!cargando && reservas.length > 0">
-    <ion-item *ngFor="let r of reservas" class="reserva-item">
-      <ion-label>
-        <h3>{{ r.sede || 'Sin sede' }} | {{ r.zona | uppercase }}</h3>
-        <p><strong>Fecha:</strong> {{ r.fecha | date:'dd/MM/yyyy' }}</p>
+  <!-- Si hay reservas -->
+  <div *ngIf="!cargando && reservas.length > 0" class="reserva-detalle">
+    <div class="reserva-card" *ngFor="let r of reservas">
+      <h3 class="codigo">#CEC-{{ r.id }}</h3>
+
+      <div class="info">
+        <p><strong>Evento:</strong> Cumpleaños de {{ r.nombre || 'Tu reserva' }}</p>
+        <p><strong>Fecha:</strong> {{ r.fecha | date:'EEEE, d \'de\' MMMM \'-\'' }} {{ r.hora || '17:00' }} hrs</p>
+        <p><strong>Sucursal:</strong> {{ r.sede || 'Sin sede' }}</p>
         <p><strong>Paquete:</strong> {{ r.paquete }}</p>
-        <p><strong>Festejados:</strong> {{ r.festejados }}</p>
-        <p><strong>Invitados:</strong> {{ r.invitados }}</p>
-        <p><strong>Estado:</strong> {{ r.estado }}</p>
-      </ion-label>
+      </div>
 
-      <!-- 🔴 Botón de cancelar -->
-      <ion-button color="danger" fill="solid" shape="round" size="small"
-        (click)="cancelarReserva(r.id)">
-        Cancelar
+      <h4 class="subtitulo">Editar tu reserva</h4>
+      <div class="inputs">
+        <label>Número de niños:</label>
+        <input type="number" [(ngModel)]="r.festejados" min="1" />
+        <label>Número de adultos:</label>
+        <input type="number" [(ngModel)]="r.invitados" min="0" />
+      </div>
+
+      <h4 class="subtitulo">Añade extras a tu fiesta</h4>
+      <div class="extras">
+        <label><input type="checkbox" /> Pizza Familiar Extra (+$12.990)</label>
+        <label><input type="checkbox" /> Torta de Chocolate (+$15.000)</label>
+        <label><input type="checkbox" /> 10 Bolsitas de Dulces (+$9.990)</label>
+      </div>
+
+      <ion-button expand="block" class="btn-actualizar">
+        Actualizar Reserva
       </ion-button>
-    </ion-item>
-  </ion-list>
+      
+      <ion-button
+        expand="block"
+        color="danger"
+        fill="solid"
+        class="btn-cancelar"
+        (click)="cancelarReserva(r.id)">
+        Cancelar Reserva
+      </ion-button>
+      
+      <p class="nota">
+        * Para cambiar la fecha u hora, por favor contacta directamente a la sucursal.
+      </p>
+    </div>
+  </div>
 
   <!-- Sin reservas -->
   <div *ngIf="!cargando && reservas.length === 0" class="sin-reservas">

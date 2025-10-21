@@ -85,6 +85,14 @@ export const routes: Routes = [
     path: 'reserview',
     loadComponent: () => import('./pages/reserview/reserview.page').then( m => m.ReserviewPage)
   },
+  {
+    path: 'juego1',
+    loadComponent: () => import('./pages/juego1/juego1.page').then( m => m.Juego1Page)
+  },
+  {
+    path: 'juego2',
+    loadComponent: () => import('./pages/juego2/juego2.page').then( m => m.Juego2Page)
+  },
 ];
 
 
