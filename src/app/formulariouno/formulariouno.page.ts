@@ -65,8 +65,14 @@ export class FormulariounoPage {
     this.fechaISO = valor ? String(valor) : null;
   }
 
+  validarInvitados() {
+    // Solo muestra advertencia visual, no corrige el valor automáticamente
+    if (this.invitados > 20) {
+      console.warn('⚠️ Máximo 20 invitados permitidos');
+    }
+  }
+
   siguiente() {
-    // Guardar en el servicio los datos del paso 1
     this.reservas.setPaso1(
       this.zonaSeleccionada,
       this.localSeleccionado,
@@ -76,8 +82,6 @@ export class FormulariounoPage {
     );
 
     console.log('Datos guardados en ReservasService:', this.reservas.value);
-
-    // Pasar al siguiente formulario
     this.router.navigate(['/formulariodos']);
   }
 }

@@ -1,0 +1,141 @@
+.rewards-content {
+    --background: #d4151f url('/assets/img/fondo2.png') center center / cover no-repeat;
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 1;
+  }
+  
+  /* 🔹 Header */
+  .header {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 1rem;
+  
+    .logo {
+      width: 80px;
+      margin-bottom: 0.4rem;
+    }
+  
+    .titulo {
+      color: #6a1b9a;
+      font-weight: 900;
+      font-size: 1.4rem;
+    }
+  }
+  
+  /* 🔹 Menú */
+  .menu-container {
+    position: relative;
+    z-index: 2;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem 7rem;
+  
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .menu-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+  
+      .menu-img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+  
+      .menu-info {
+        padding: 0.8rem 1rem;
+  
+        h3 {
+          font-size: 1.1rem;
+          color: #6a1b9a;
+          font-weight: 800;
+          margin: 0;
+        }
+  
+        p {
+          font-size: 0.85rem;
+          color: #555;
+          margin: 0.3rem 0 0.6rem;
+        }
+  
+        .menu-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+  
+          .precio {
+            font-weight: 800;
+            color: #d4151f;
+            font-size: 1rem;
+          }
+  
+          .btn-agregar {
+            --background: #6a1b9a;
+            --color: #fff;
+            font-weight: 700;
+            border-radius: 0.6rem;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+  
+  /* 🔹 Carrito */
+  .carrito {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 3px solid #6a1b9a;
+    padding: 1rem;
+    z-index: 3;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+  
+    h3 {
+      margin: 0 0 0.6rem;
+      color: #6a1b9a;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.8rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+  
+    .total {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+  
+    .btn-pagar {
+      --background: #d4151f;
+      --color: #fff;
+      font-weight: 800;
+      text-transform: uppercase;
+      border-radius: 0.7rem;
+    }
+  }
+  

@@ -28,9 +28,26 @@
       <h4 class="subtitulo">Editar tu reserva</h4>
       <div class="inputs">
         <label>Número de niños:</label>
-        <input type="number" [(ngModel)]="r.festejados" min="1" />
+        <input 
+          type="number"
+          [(ngModel)]="r.invitados"
+          min="1"
+          (input)="verificarLimites(r)"
+        />
+        <small *ngIf="r.invitados > 10" style="color: #d4151f; font-size: 0.8rem;">
+          ⚠️ Máximo 10 niños permitidos.
+        </small>
+
         <label>Número de adultos:</label>
-        <input type="number" [(ngModel)]="r.invitados" min="0" />
+        <input 
+          type="number"
+          [(ngModel)]="r.adultos"
+          min="0"
+          (input)="verificarLimites(r)"
+        />
+        <small *ngIf="r.adultos > 2" style="color: #d4151f; font-size: 0.8rem;">
+          ⚠️ Máximo 2 adultos permitidos.
+        </small>
       </div>
 
       <h4 class="subtitulo">Añade extras a tu fiesta</h4>
@@ -40,10 +57,13 @@
         <label><input type="checkbox" /> 10 Bolsitas de Dulces (+$9.990)</label>
       </div>
 
-      <ion-button expand="block" class="btn-actualizar">
+      <ion-button
+        expand="block"
+        class="btn-actualizar"
+        (click)="actualizarReserva(r)">
         Actualizar Reserva
       </ion-button>
-      
+
       <ion-button
         expand="block"
         color="danger"
@@ -52,7 +72,7 @@
         (click)="cancelarReserva(r.id)">
         Cancelar Reserva
       </ion-button>
-      
+
       <p class="nota">
         * Para cambiar la fecha u hora, por favor contacta directamente a la sucursal.
       </p>

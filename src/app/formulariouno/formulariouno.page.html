@@ -1,8 +1,7 @@
 <ion-content [fullscreen]="true" class="formulario-content">
 
-  <!-- Marca arriba (compacta) -->
+  <!-- Marca arriba -->
   <div class="brand">
-
     <span></span>
   </div>
 
@@ -22,8 +21,7 @@
     <div class="gray-box">
       <h3 class="section-title">Selecciona tu local</h3>
 
-      <ion-radio-group [value]="zonaSeleccionada"
-                       (ionChange)="onZonaChange($event.detail.value)">
+      <ion-radio-group [(ngModel)]="zonaSeleccionada" (ionChange)="onZonaChange($event.detail.value)">
         <div class="radios-inline">
           <ion-item lines="none">
             <ion-radio slot="start" value="rm"></ion-radio>
@@ -36,10 +34,7 @@
         </div>
       </ion-radio-group>
 
-      <ion-select interface="popover"
-                  placeholder="Seleccionar"
-                  [multiple]="false"
-                  (ionChange)="onLocalChange($event.detail.value)">
+      <ion-select interface="popover" placeholder="Seleccionar" [multiple]="false" (ionChange)="onLocalChange($event.detail.value)">
         <ion-select-option *ngFor="let l of localesVisibles" [value]="l">
           {{ l }}
         </ion-select-option>
@@ -52,27 +47,34 @@
 
       <div class="festejados">
         <div class="radios-inline tight">
-          <ion-item lines="none">
-            <ion-radio name="festejados" value="1"
-                       [(ngModel)]="festejados"></ion-radio>
-            <ion-label>1</ion-label>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-radio name="festejados" value="2"
-                       [(ngModel)]="festejados"></ion-radio>
-            <ion-label>2</ion-label>
-          </ion-item>
+          <ion-radio-group [(ngModel)]="festejados">
+            <ion-item lines="none">
+              <ion-radio value="1"></ion-radio>
+              <ion-label>1</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio value="2"></ion-radio>
+              <ion-label>2</ion-label>
+            </ion-item>
+          </ion-radio-group>
         </div>
 
         <div class="invited">
           <span>Niños invitados</span>
-          <ion-input type="number"
-                     inputmode="numeric"
-                     min="0"
-                     [(ngModel)]="invitados"
-                     placeholder="0"></ion-input>
+          <ion-input
+            type="number"
+            inputmode="numeric"
+            min="0"
+            [(ngModel)]="invitados"
+            placeholder="0"
+            (ionInput)="validarInvitados()">
+          </ion-input>
         </div>
       </div>
+
+      <p *ngIf="invitados > 20" style="color:red; font-size:0.8rem; margin-top:0.3rem;">
+        Máximo 20 niños invitados permitidos.
+      </p>
 
       <p class="nota">
         La celebración considera sólo un festejad@, el 2° tiene un cargo extra
@@ -94,12 +96,12 @@
     <!-- Propina -->
     <p class="propina">
       <ion-icon name="alert-circle-outline"></ion-icon>
-      La propina sugerida es una forma de reconocer el servicio del equipo.  
+      La propina sugerida es una forma de reconocer el servicio del equipo.
       Se realiza al momento de pagar el cumpleaños y es completamente
       voluntaria; puedes modificarla o eliminarla si lo deseas.
     </p>
 
-    <!-- Botón al final de la card -->
+    <!-- Botón final -->
     <div class="actions">
       <ion-button expand="block" class="agenda-btn" (click)="siguiente()">
         Siguiente
