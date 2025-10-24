@@ -47,12 +47,10 @@ export class ReserviewPage implements OnInit {
 
       if (error) throw error;
 
-      // Aseguramos coherencia de campos
       this.reservas = (data || []).map(r => ({
         ...r,
-        adultos: r.adultos ?? 0, // si no existe, inicializa
-        invitados: r.invitados ?? 0, // niños invitados
-        festejados: r.festejados ?? 1, // cantidad de festejados
+        invitados: r.invitados ?? 0,
+        festejados: r.festejados ?? 1,
       }));
 
       console.log('✅ Reservas cargadas:', this.reservas);
@@ -65,7 +63,7 @@ export class ReserviewPage implements OnInit {
 
   verificarLimites(r: any) {
     if (r.invitados > 10) console.warn('⚠️ Excedió el máximo de niños permitido (10)');
-    if (r.adultos > 2) console.warn('⚠️ Excedió el máximo de adultos permitido (2)');
+    if (r.festejados > 2) console.warn('⚠️ Excedió el máximo de adultos permitido (2)');
   }
 
   async cancelarReserva(id: string) {
@@ -86,7 +84,7 @@ export class ReserviewPage implements OnInit {
 
   async actualizarReserva(r: any) {
     try {
-      if (r.invitados > 10 || r.adultos > 2) {
+      if (r.invitados > 10 || r.festejados > 2) {
         alert('❌ Límite excedido: máximo 10 niños y 2 adultos.');
         return;
       }
@@ -94,8 +92,8 @@ export class ReserviewPage implements OnInit {
       const { error } = await this.reservasService.client
         .from('reservas')
         .update({
-          invitados: r.invitados, // niños invitados
-          adultos: r.adultos,     // adultos acompañantes
+          invitados: r.invitados,  // niños invitados
+          festejados: r.festejados // adultos acompañantes
         })
         .eq('id', r.id);
 

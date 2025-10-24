@@ -11,7 +11,7 @@ import {
   IonItem
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { ReservasService } from '../../services/reservas.service'; // 👈 IMPORTANTE
+import { ReservasService } from '../../services/reservas.service';
 
 @Component({
   selector: 'app-formulariocuatro',
@@ -31,17 +31,34 @@ import { ReservasService } from '../../services/reservas.service'; // 👈 IMPOR
   ]
 })
 export class FormulariocuatroPage {
+  nombre = '';
+  apellido = '';
+  edad: number | null = null;
+  fechaNacISO: string | null = null;
+  colegio = '';
+  noEscolar = false;
+
   constructor(
     private router: Router,
-    private reservasService: ReservasService // 👈 INYECTAMOS el servicio
+    private reservasService: ReservasService
   ) {}
 
   async confirmarReserva() {
     try {
-      const id = await this.reservasService.guardarEnSupabase(); // 🔥 Guarda en Supabase
+      // 🔹 Guardamos datos del niño en el borrador (draft)
+      this.reservasService.setNino({
+        nombre: this.nombre,
+        apellido: this.apellido,
+        edad: this.edad,
+        fechaNacISO: this.fechaNacISO,
+        colegio: this.colegio,
+        noEscolar: this.noEscolar
+      });
+
+      // 🔹 Luego insertamos en Supabase
+      const id = await this.reservasService.guardarEnSupabase();
       console.log('✅ Reserva guardada con ID:', id);
 
-      // Navega al resumen (formulario 5)
       this.router.navigate(['/formulariocinco']);
     } catch (error) {
       console.error('❌ Error al guardar reserva:', error);

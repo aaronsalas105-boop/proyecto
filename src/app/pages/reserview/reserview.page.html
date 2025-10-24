@@ -19,8 +19,8 @@
       <h3 class="codigo">#CEC-{{ r.id }}</h3>
 
       <div class="info">
-        <p><strong>Evento:</strong> Cumpleaños de {{ r.nombre || 'Tu reserva' }}</p>
-        <p><strong>Fecha:</strong> {{ r.fecha | date:'EEEE, d \'de\' MMMM \'-\'' }} {{ r.hora || '17:00' }} hrs</p>
+        <p><strong>Evento:</strong> Cumpleaños de {{ r.nombre_festejado || 'Tu reserva' }}</p>
+        <p><strong>Fecha:</strong> {{ r.fecha | date:'EEEE, d \'de\' MMMM' }} {{ r.hora || '17:00' }} hrs</p>
         <p><strong>Sucursal:</strong> {{ r.sede || 'Sin sede' }}</p>
         <p><strong>Paquete:</strong> {{ r.paquete }}</p>
       </div>
@@ -41,11 +41,11 @@
         <label>Número de adultos:</label>
         <input 
           type="number"
-          [(ngModel)]="r.adultos"
+          [(ngModel)]="r.festejados"
           min="0"
           (input)="verificarLimites(r)"
         />
-        <small *ngIf="r.adultos > 2" style="color: #d4151f; font-size: 0.8rem;">
+        <small *ngIf="r.festejados > 2" style="color: #d4151f; font-size: 0.8rem;">
           ⚠️ Máximo 2 adultos permitidos.
         </small>
       </div>

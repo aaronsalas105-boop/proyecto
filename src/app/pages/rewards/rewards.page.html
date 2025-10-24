@@ -1,42 +1,62 @@
 <ion-content [fullscreen]="true" class="rewards-content">
-  <div class="overlay"></div>
-
-  <!-- 🔹 Header -->
-  <div class="header">
-    <img src="/assets/img/logo1.png" alt="Logo" class="logo" />
-    <h2 class="titulo">Menú Chuck E. Cheese 🍕</h2>
-  </div>
-
-  <!-- 🔹 Productos -->
+  <!-- Tarjeta principal -->
   <div class="menu-container">
+    <!-- 🔹 Header -->
+    <div class="header">
+      <img src="/assets/img/logo1.png" alt="Logo" class="logo" />
+      <h2 class="titulo">Tu Pedido Divertido 🍕</h2>
+    </div>
+
+    <!-- 🔹 Productos en carrito -->
     <div class="menu-card" *ngFor="let p of productos">
       <img [src]="p.imagen" alt="{{ p.nombre }}" class="menu-img" />
       <div class="menu-info">
         <h3>{{ p.nombre }}</h3>
         <p>{{ p.descripcion }}</p>
         <div class="menu-footer">
-          <span class="precio">\${{ p.precio | number:'1.0-0' }}</span>
-          <ion-button size="small" class="btn-agregar" (click)="agregarAlCarrito(p)">
-            Añadir
-          </ion-button>
+          <span class="precio">\${{ p.precio | number: '1.0-0' }}</span>
+          <div class="cantidad">
+            <ion-button size="small" fill="clear" (click)="disminuirCantidad(p)">-</ion-button>
+            <span>{{ p.cantidad || 0 }}</span>
+            <ion-button size="small" fill="clear" (click)="agregarAlCarrito(p)">+</ion-button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 🔹 Carrito flotante -->
-  <div class="carrito" *ngIf="carrito.length > 0">
-    <h3>🛒 Carrito</h3>
-    <ul>
-      <li *ngFor="let item of carrito">{{ item.nombre }} - \${{ item.precio | number:'1.0-0' }}</li>
-    </ul>
-
-    <div class="total">
-      Total: <strong>\${{ total | number:'1.0-0' }}</strong>
+ <!-- 🔹 Sección extra -->
+<div class="extra-section">
+  <h4>¿Se te olvida algo?</h4>
+  <div class="extra-items">
+    <div
+      class="extra-item"
+      *ngFor="let e of extras"
+      (click)="agregarExtra(e)"
+    >
+      {{ e.emoji }} {{ e.nombre }}
     </div>
+  </div>
+</div>
 
-    <ion-button expand="block" class="btn-pagar" (click)="pagar()">
-      Pagar ahora
-    </ion-button>
+
+    <!-- 🔹 Resumen de compra -->
+    <div class="carrito" *ngIf="total > 0">
+      <div class="resumen">
+        <span>Subtotal:</span>
+        <span>\${{ total | number: '1.0-0' }}</span>
+      </div>
+      <div class="resumen">
+        <span>Descuentos:</span>
+        <span>-$0</span>
+      </div>
+      <div class="resumen">
+        <span>Propina (opcional):</span>
+        <span>+$0</span>
+      </div>
+      <div class="total">TOTAL: ${{ total | number: '1.0-0' }}</div>
+      <ion-button expand="block" class="btn-pagar" (click)="pagar()">
+        Pagar ${{ total | number: '1.0-0' }}
+      </ion-button>
+    </div>
   </div>
 </ion-content>

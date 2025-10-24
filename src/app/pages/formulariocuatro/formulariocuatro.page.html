@@ -20,28 +20,30 @@
         <div class="nombre-group">
           <div>
             <ion-label position="stacked">Nombre *</ion-label>
-            <ion-input placeholder="Ej: Juan"></ion-input>
+            <ion-input placeholder="Ej: Juan" [(ngModel)]="nombre" name="nombre"></ion-input>
           </div>
           <div>
             <ion-label position="stacked">Apellido *</ion-label>
-            <ion-input placeholder="Ej: Pérez"></ion-input>
+            <ion-input placeholder="Ej: Pérez" [(ngModel)]="apellido" name="apellido"></ion-input>
           </div>
         </div>
 
         <ion-label position="stacked">Edad *</ion-label>
-        <ion-input placeholder="Ej: 7" type="number"></ion-input>
+        <ion-input placeholder="Ej: 7" type="number" [(ngModel)]="edad" name="edad"></ion-input>
 
         <ion-label position="stacked">Fecha de nacimiento: (opcional)</ion-label>
         <ion-datetime
-        presentation="date"     
-        display-format="DD/MM/YYYY">
-      </ion-datetime>
+          presentation="date"
+          display-format="DD/MM/YYYY"
+          [(ngModel)]="fechaNacISO"
+          name="fechaNacISO">
+        </ion-datetime>
 
         <ion-label position="stacked">Colegio: (opcional)</ion-label>
-        <ion-input placeholder="Ej: San Ignacio"></ion-input>
+        <ion-input placeholder="Ej: San Ignacio" [(ngModel)]="colegio" name="colegio"></ion-input>
 
         <ion-item lines="none" class="terminos">
-          <ion-radio></ion-radio>
+          <ion-radio [(ngModel)]="noEscolar" name="noEscolar" [value]="true"></ion-radio>
           <ion-label>No está en edad escolar (opcional)</ion-label>
         </ion-item>
 
