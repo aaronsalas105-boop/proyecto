@@ -1,0 +1,116 @@
+/* ===== Fondo general ===== */
+ion-content {
+    --background: none;
+    background: url('/assets/img/fondo-anfitrion.png') center center / cover no-repeat fixed !important;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 7rem;
+  }
+  
+  /* ===== Logo superior ===== */
+  .top-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4.2rem; /* bajado un poco para no chocar con el menú del celular */
+    margin-bottom: 0.8rem;
+  }
+  
+  .top-logo img {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* ===== Contenedor ===== */
+  .anfitrion-container {
+    padding: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ===== Grid ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  /* ===== Tarjetas ===== */
+  .host-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 1rem 0.8rem;
+    text-align: center;
+    color: #4a148c;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .host-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===== Imagen del anfitrión ===== */
+  .host-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 2px solid #6a1b9a;
+  }
+  
+  /* ===== Nombre ===== */
+  .host-name {
+    font-weight: bold;
+    color: #4a148c;
+    margin: 0.3rem 0;
+    font-size: 1rem;
+  }
+  
+  /* ===== Estrellas ===== */
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin: 0.4rem auto;
+  }
+  
+  .star-icon {
+    font-size: 1.3rem;
+    color: gold;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+  }
+  
+  /* ===== Descripción ===== */
+  .desc {
+    color: #6a1b9a;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    line-height: 1.2;
+  }
+  
+  /* ===== Animación ===== */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonButton, IonIcon,
   IonGrid, IonRow, IonCol, IonFooter, IonLabel, IonModal
@@ -33,6 +33,8 @@ export class FoodPage {
   isModalOpen = false;
   modalData = { title: '', text: '' };
 
+  constructor(private router: Router) {}
+
   slideOpts = {
     initialSlide: 0,
     speed: 400
@@ -58,5 +60,9 @@ export class FoodPage {
 
   closeModal() {
     this.isModalOpen = false;
+  }
+
+  navigateToVerAnfitrion() {
+    this.router.navigate(['/veranfitrion']);
   }
 }

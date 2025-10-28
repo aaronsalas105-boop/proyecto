@@ -93,6 +93,11 @@ export const routes: Routes = [
     path: 'juego2',
     loadComponent: () => import('./pages/juego2/juego2.page').then( m => m.Juego2Page)
   },
+  {
+    path: 'veranfitrion',
+    loadComponent: () => import('./pages/veranfitrion/veranfitrion.page').then( m => m.VerAnfitrionPage)
+  },
+
 ];
 
 

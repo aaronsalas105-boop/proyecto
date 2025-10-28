@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true" class="veranfitrion-content">
+  <!-- Logo superior -->
+  <div class="top-logo">
+    <img src="/assets/img/logo1.png" alt="Chuck E. Cheese Logo" />
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="anfitrion-container">
+    <h2 class="title">Elige tu Anfitrión 🎉</h2>
+
+    <!-- Grid de tarjetas -->
+    <div class="cards-grid">
+      <div class="host-card" *ngFor="let host of hosts" (click)="selectHost(host)">
+        <!-- Imagen del anfitrión -->
+        <img [src]="host.image" [alt]="host.name" class="host-img" />
+
+        <!-- Nombre -->
+        <h3 class="host-name">{{ host.name }}</h3>
+
+        <!-- Estrellas dinámicas -->
+        <div class="stars">
+          <ion-icon
+            *ngFor="let star of getStars(host.rating)"
+            [name]="star"
+            class="star-icon"
+          ></ion-icon>
+        </div>
+
+        <!-- Descripción -->
+        <p class="desc">{{ host.description }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
