@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonButton, ToastController } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-rewards',
@@ -10,67 +12,34 @@ import { IonContent, IonButton } from '@ionic/angular/standalone';
   imports: [CommonModule, IonContent, IonButton],
 })
 export class RewardsPage {
+  constructor(
+    private supabase: SupabaseService,
+    private toastCtrl: ToastController,
+    private router: Router
+  ) {}
+
   productos = [
-    {
-      nombre: 'Pizza Familiar',
-      descripcion: 'Masa fresca, salsa casera y queso derretido.',
-      precio: 12990,
-      imagen: '/assets/img/pizza1.png',
-      cantidad: 0,
-    },
-    {
-      nombre: 'Combo Chuck (Pizza + Bebida)',
-      descripcion: 'Pizza mediana + bebida 500 ml.',
-      precio: 9990,
-      imagen: '/assets/img/pizza2.png',
-      cantidad: 0,
-    },
-    {
-      nombre: 'Torta de Cumpleaños',
-      descripcion: 'Torta de chocolate para celebrar con estilo.',
-      precio: 14990,
-      imagen: '/assets/img/torta.png',
-      cantidad: 0,
-    },
-    {
-      nombre: 'Bandeja de Papas',
-      descripcion: 'Crocantes, doradas y deliciosas.',
-      precio: 5990,
-      imagen: '/assets/img/papas.png',
-      cantidad: 0,
-    },
+    { nombre: 'Pizza Familiar', descripcion: 'Masa fresca, salsa casera y queso derretido.', precio: 12990, imagen: '/assets/img/pizza1.png', cantidad: 0 },
+    { nombre: 'Combo Chuck (Pizza + Bebida)', descripcion: 'Pizza mediana + bebida 500 ml.', precio: 9990, imagen: '/assets/img/pizza2.png', cantidad: 0 },
+    { nombre: 'Torta de Cumpleaños', descripcion: 'Torta de chocolate para celebrar con estilo.', precio: 14990, imagen: '/assets/img/torta.png', cantidad: 0 },
+    { nombre: 'Bandeja de Papas', descripcion: 'Crocantes, doradas y deliciosas.', precio: 5990, imagen: '/assets/img/papas.png', cantidad: 0 },
   ];
 
   extras = [
-    {
-      nombre: 'Bebida Grande',
-      precio: 2990,
-      emoji: '🥤',
-      cantidad: 0,
-    },
-    {
-      nombre: 'Hamburguesa Clásica',
-      precio: 4990,
-      emoji: '🍔',
-      cantidad: 0,
-    },
-    {
-      nombre: '+50 Fichas (10 Gratis)',
-      precio: 6990,
-      emoji: '🪙',
-      cantidad: 0,
-    },
+    { nombre: 'Bebida Grande', precio: 2990, emoji: '🥤', cantidad: 0 },
+    { nombre: 'Hamburguesa Clásica', precio: 4990, emoji: '🍔', cantidad: 0 },
+    { nombre: '+50 Fichas (10 Gratis)', precio: 6990, emoji: '🪙', cantidad: 0 },
   ];
 
   total = 0;
 
-  /** 🔹 Aumentar producto del menú */
+  /** 🔹 Aumentar producto */
   agregarAlCarrito(producto: any) {
     producto.cantidad++;
     this.actualizarTotal();
   }
 
-  /** 🔹 Disminuir cantidad del menú */
+  /** 🔹 Disminuir cantidad */
   disminuirCantidad(producto: any) {
     if (producto.cantidad > 0) {
       producto.cantidad--;
@@ -78,7 +47,7 @@ export class RewardsPage {
     }
   }
 
-  /** 🔹 Agregar extra (bebida, hamburguesa, fichas) */
+  /** 🔹 Agregar extra */
   agregarExtra(extra: any) {
     extra.cantidad++;
     this.actualizarTotal();
@@ -86,21 +55,15 @@ export class RewardsPage {
 
   /** 🔹 Calcular total */
   actualizarTotal() {
-    const totalProductos = this.productos.reduce(
-      (acc, p) => acc + p.precio * p.cantidad,
-      0
-    );
-    const totalExtras = this.extras.reduce(
-      (acc, e) => acc + e.precio * e.cantidad,
-      0
-    );
+    const totalProductos = this.productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+    const totalExtras = this.extras.reduce((acc, e) => acc + e.precio * e.cantidad, 0);
     this.total = totalProductos + totalExtras;
   }
 
-  /** 🔹 Pagar */
-  pagar() {
+  /** 🔹 Guardar pedido en Supabase y redirigir al voucher */
+  async pagar() {
     if (this.total === 0) {
-      alert('Tu carrito está vacío 🛒');
+      this.mostrarToast('Tu carrito está vacío 🛒', 'warning');
       return;
     }
 
@@ -109,14 +72,48 @@ export class RewardsPage {
       ...this.extras.filter((e) => e.cantidad > 0),
     ];
 
-    let resumen = itemsComprados
-      .map((item) => `• ${item.nombre} x${item.cantidad}`)
-      .join('\n');
+    try {
+      const { data: session } = await this.supabase.client.auth.getSession();
+      const user = session?.session?.user;
 
-    alert(`💳 Has pagado $${this.total.toLocaleString()}.\n\n🧾 Tu pedido:\n${resumen}`);
+      if (!user) {
+        this.mostrarToast('Debes iniciar sesión para comprar 🔒', 'danger');
+        return;
+      }
 
-    // Reiniciar
-    [...this.productos, ...this.extras].forEach((item) => (item.cantidad = 0));
-    this.total = 0;
+      const { data, error } = await this.supabase.client
+        .from('pedidos')
+        .insert({
+          usuario_id: user.id,
+          total: this.total,
+          items: itemsComprados,
+        })
+        .select('id')
+        .single();
+
+      if (error) throw error;
+
+      // 🚀 Redirigir al voucher
+      this.router.navigate(['/voucher', data.id]);
+
+      // Reiniciar carrito
+      [...this.productos, ...this.extras].forEach((item) => (item.cantidad = 0));
+      this.total = 0;
+
+    } catch (err: any) {
+      console.error('Error al guardar pedido:', err.message);
+      this.mostrarToast('❌ Error al guardar pedido', 'danger');
+    }
+  }
+
+  /** 🔹 Toast bonito */
+  async mostrarToast(mensaje: string, color: 'success' | 'warning' | 'danger') {
+    const toast = await this.toastCtrl.create({
+      message: mensaje,
+      duration: 2500,
+      position: 'bottom',
+      color,
+    });
+    await toast.present();
   }
 }

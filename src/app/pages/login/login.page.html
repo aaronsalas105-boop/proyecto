@@ -44,8 +44,19 @@
 
             <!-- Botón -->
             <div class="button-container">
-              <ion-button expand="block" color="danger" shape="round" size="large" (click)="onLogin()">
-                Iniciar Sesión
+              <ion-button 
+                expand="block" 
+                color="danger" 
+                shape="round" 
+                size="large" 
+                (click)="onLogin()"
+                [disabled]="isLoading">
+                @if (isLoading) {
+                  <ion-spinner name="crescent" color="light"></ion-spinner>
+                  <span style="margin-left: 8px;">Iniciando...</span>
+                } @else {
+                  Iniciar Sesión
+                }
               </ion-button>
             </div>
 

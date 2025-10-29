@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'; //convierte la class en un componenete angular, o sea una pagina 
+import { Component, inject } from '@angular/core'; //convierte la class en un componenete angular, o sea una pagina 
 import { Router } from '@angular/router';//permite navegar entre paginas
 
 //ambos activan funciones de angular y permite usar ngmodel para capturar datos de los imputs 
@@ -16,6 +16,7 @@ import {
   IonInput,
   IonItem,
   IonIcon,
+  IonSpinner,
 } from '@ionic/angular/standalone';
 
 import { AuthService } from '../../services/auth.service';//importa el servicio  que creamos para conectar a supabase
@@ -36,6 +37,7 @@ import { AuthService } from '../../services/auth.service';//importa el servicio 
     IonInput,
     IonItem,
     IonIcon,
+    IonSpinner,
   ],
 })
 
@@ -44,7 +46,14 @@ export class LoginPage {
   email = '';
   password = '';
 
-  constructor(private router: Router, private auth: AuthService) {} //constructor que inicializa las propiedades y el servicio de autenticacion
+  // Usar inject() en lugar de constructor para servicios
+  private router = inject(Router);
+  private auth = inject(AuthService);
+
+  // Exponer signals del AuthService para usar en el template
+  get isLoading() {
+    return this.auth.isLoading();
+  }
 
   async onLogin() {
     // ✅ 1. Validar campos vacíos
@@ -54,7 +63,7 @@ export class LoginPage {
     }
     
     try {
-      // ✅ 2. Llamar al servicio Supabase
+      // ✅ 2. Llamar al servicio Supabase (el estado se actualiza automáticamente via Signals)
       const { user } = await this.auth.signIn(this.email, this.password);
 
       // ✅ 3. Verificar si realmente se devolvió un usuario válido
