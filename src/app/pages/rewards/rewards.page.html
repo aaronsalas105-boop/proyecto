@@ -1,62 +1,89 @@
 <ion-content [fullscreen]="true" class="rewards-content">
-  <!-- Tarjeta principal -->
+  <div class="overlay"></div>
+
+  <!-- 🔹 Header -->
+  <div class="header">
+    <img src="/assets/img/logo1.png" alt="Logo" class="logo" />
+    <h2 class="titulo">¡Tu Pedido Divertido 🍕!</h2>
+  </div>
+
+  <!-- 🔹 Lista de productos -->
   <div class="menu-container">
-    <!-- 🔹 Header -->
-    <div class="header">
-      <img src="/assets/img/logo1.png" alt="Logo" class="logo" />
-      <h2 class="titulo">Tu Pedido Divertido 🍕</h2>
-    </div>
-
-    <!-- 🔹 Productos en carrito -->
-    <div class="menu-card" *ngFor="let p of productos">
-      <img [src]="p.imagen" alt="{{ p.nombre }}" class="menu-img" />
-      <div class="menu-info">
-        <h3>{{ p.nombre }}</h3>
-        <p>{{ p.descripcion }}</p>
-        <div class="menu-footer">
-          <span class="precio">\${{ p.precio | number: '1.0-0' }}</span>
-          <div class="cantidad">
-            <ion-button size="small" fill="clear" (click)="disminuirCantidad(p)">-</ion-button>
-            <span>{{ p.cantidad || 0 }}</span>
-            <ion-button size="small" fill="clear" (click)="agregarAlCarrito(p)">+</ion-button>
-          </div>
-        </div>
-      </div>
-    </div>
-
- <!-- 🔹 Sección extra -->
-<div class="extra-section">
-  <h4>¿Se te olvida algo?</h4>
-  <div class="extra-items">
     <div
-      class="extra-item"
-      *ngFor="let e of extras"
-      (click)="agregarExtra(e)"
+      class="menu-card"
+      *ngFor="let item of items"
+      [ngClass]="{ 'combo-special': item.isCombo }"
     >
-      {{ e.emoji }} {{ e.nombre }}
+      <!-- Imagen del producto -->
+      <div class="item-img">
+        <img [src]="item.image" [alt]="item.name" />
+        <img
+          *ngIf="item.character"
+          [src]="item.character"
+          class="character-icon"
+          alt="personaje"
+        />
+      </div>
+
+      <!-- Detalle -->
+      <div class="item-info">
+        <h3 class="item-name">{{ item.name }}</h3>
+        <p class="item-desc">{{ item.description }}</p>
+        <h4 class="item-price">${{ item.price | number: '1.0-0' }}</h4>
+      </div>
+
+      <!-- Controles -->
+      <div class="quantity-controls">
+        <ion-button fill="solid" color="light" (click)="decrease(item)">-</ion-button>
+        <span class="quantity">{{ item.quantity }}</span>
+        <ion-button fill="solid" color="light" (click)="increase(item)">+</ion-button>
+      </div>
     </div>
   </div>
-</div>
 
-
-    <!-- 🔹 Resumen de compra -->
-    <div class="carrito" *ngIf="total > 0">
-      <div class="resumen">
-        <span>Subtotal:</span>
-        <span>\${{ total | number: '1.0-0' }}</span>
-      </div>
-      <div class="resumen">
-        <span>Descuentos:</span>
-        <span>-$0</span>
-      </div>
-      <div class="resumen">
-        <span>Propina (opcional):</span>
-        <span>+$0</span>
-      </div>
-      <div class="total">TOTAL: ${{ total | number: '1.0-0' }}</div>
-      <ion-button expand="block" class="btn-pagar" (click)="pagar()">
-        Pagar ${{ total | number: '1.0-0' }}
-      </ion-button>
-    </div>
+  <!-- 🔹 Carrito flotante -->
+  <div class="cart-fab" (click)="openCart()">
+    <ion-icon name="cart"></ion-icon>
+    <span class="cart-count">{{ cartCount }}</span>
   </div>
+
+  <!-- 🔹 Modal del carrito -->
+  <ion-modal *ngIf="open" class="cart-modal" [presentingElement]="presentingElement">
+    <ion-header>
+      <ion-toolbar color="light">
+        <ion-title>🛒 Tu Pedido</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="open = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <div *ngIf="cartItems.length > 0; else empty">
+        <ion-list>
+          <ion-item *ngFor="let item of cartItems">
+            <ion-thumbnail slot="start">
+              <img [src]="item.image" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ item.name }}</h3>
+              <p>x{{ item.quantity }} — ${{ item.price * item.quantity | number: '1.0-0' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <h2 class="total">Total: ${{ total | number: '1.0-0' }}</h2>
+
+        <ion-button expand="block" color="primary" (click)="goToVoucher()">
+          Pagar 🎟️
+        </ion-button>
+      </div>
+
+      <ng-template #empty>
+        <div class="empty-cart">
+          <p>Tu carrito está vacío 😅</p>
+        </div>
+      </ng-template>
+    </ion-content>
+  </ion-modal>
 </ion-content>

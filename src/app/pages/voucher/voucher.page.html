@@ -1,28 +1,30 @@
 <ion-content [fullscreen]="true" class="voucher-content">
-  <div class="voucher-card" *ngIf="pedido">
-    <h1 class="titulo">🎉 ¡Gracias por tu compra!</h1>
+  <div class="voucher-wrapper">
+    <div class="voucher-card" *ngIf="pedido">
+      <h1 class="titulo">🎉 ¡Gracias por tu compra!</h1>
 
-    <div class="voucher-info">
-      <p><strong>Código del pedido:</strong> {{ codigo }}</p>
-      <p><strong>Total pagado:</strong> ${{ pedido.total | number: '1.0-0' }}</p>
-      <p><strong>Fecha:</strong> {{ pedido.creado_en | date: 'medium' }}</p>
+      <div class="voucher-info">
+        <p><strong>Código del pedido:</strong> {{ codigo }}</p>
+        <p><strong>Total pagado:</strong> ${{ pedido.total | number: '1.0-0' }}</p>
+        <p><strong>Fecha:</strong> {{ pedido.creado_en | date: 'medium' }}</p>
+      </div>
+
+      <div class="voucher-items">
+        <h3>🧾 Productos</h3>
+        <ul>
+          <li *ngFor="let item of pedido.items">
+            {{ item.nombre }} x{{ item.cantidad }} — ${{ item.precio * item.cantidad | number: '1.0-0' }}
+          </li>
+        </ul>
+      </div>
+
+      <ion-button expand="block" class="btn-volver" (click)="volverAlMenu()">
+        VOLVER AL MENÚ 🍕
+      </ion-button>
     </div>
 
-    <div class="voucher-items">
-      <h3>🧾 Productos</h3>
-      <ul>
-        <li *ngFor="let item of pedido.items">
-          {{ item.nombre }} x{{ item.cantidad }} — ${{ item.precio * item.cantidad | number: '1.0-0' }}
-        </li>
-      </ul>
+    <div *ngIf="!pedido" class="loading">
+      <p>Cargando tu comprobante...</p>
     </div>
-
-    <ion-button expand="block" class="btn-volver" (click)="volverAlMenu()">
-      Volver al menú 🍕
-    </ion-button>
-  </div>
-
-  <div *ngIf="!pedido" class="loading">
-    <p>Cargando tu comprobante...</p>
   </div>
 </ion-content>

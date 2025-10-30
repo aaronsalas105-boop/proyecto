@@ -1,119 +1,112 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonButton, ToastController } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { cart, add, remove } from 'ionicons/icons';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-rewards',
   templateUrl: './rewards.page.html',
   styleUrls: ['./rewards.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonContent, IonButton],
+  imports: [CommonModule, IonicModule],
 })
 export class RewardsPage {
-  constructor(
-    private supabase: SupabaseService,
-    private toastCtrl: ToastController,
-    private router: Router
-  ) {}
-
-  productos = [
-    { nombre: 'Pizza Familiar', descripcion: 'Masa fresca, salsa casera y queso derretido.', precio: 12990, imagen: '/assets/img/pizza1.png', cantidad: 0 },
-    { nombre: 'Combo Chuck (Pizza + Bebida)', descripcion: 'Pizza mediana + bebida 500 ml.', precio: 9990, imagen: '/assets/img/pizza2.png', cantidad: 0 },
-    { nombre: 'Torta de Cumpleaños', descripcion: 'Torta de chocolate para celebrar con estilo.', precio: 14990, imagen: '/assets/img/torta.png', cantidad: 0 },
-    { nombre: 'Bandeja de Papas', descripcion: 'Crocantes, doradas y deliciosas.', precio: 5990, imagen: '/assets/img/papas.png', cantidad: 0 },
-  ];
-
-  extras = [
-    { nombre: 'Bebida Grande', precio: 2990, emoji: '🥤', cantidad: 0 },
-    { nombre: 'Hamburguesa Clásica', precio: 4990, emoji: '🍔', cantidad: 0 },
-    { nombre: '+50 Fichas (10 Gratis)', precio: 6990, emoji: '🪙', cantidad: 0 },
-  ];
-
+  cartCount = 0;
+  cartItems: any[] = [];
   total = 0;
+  open = false;
+  presentingElement: HTMLElement | null = null;
 
-  /** 🔹 Aumentar producto */
-  agregarAlCarrito(producto: any) {
-    producto.cantidad++;
-    this.actualizarTotal();
+  constructor(private router: Router) {
+    addIcons({ cart, add, remove });
   }
 
-  /** 🔹 Disminuir cantidad */
-  disminuirCantidad(producto: any) {
-    if (producto.cantidad > 0) {
-      producto.cantidad--;
-      this.actualizarTotal();
+  ngOnInit() {
+    // Asocia el modal al contenido principal
+    this.presentingElement = document.querySelector('ion-content');
+  }
+
+  items = [
+    {
+      name: 'La Súper Pizza de Pasqually',
+      description: 'Masa fresca, salsa casera y queso derretido.',
+      price: 12990,
+      image: '/assets/img/pizza1.png',
+      character: '/assets/img/pasqually.png',
+      isCombo: false,
+      quantity: 0,
+    },
+    {
+      name: 'Combo Chuck (Pizza + Bebida)',
+      description: 'Pizza mediana + bebida 500 ml.',
+      price: 9990,
+      image: '/assets/img/pizza2.png',
+      character: '/assets/img/chuck.png',
+      isCombo: true,
+      quantity: 0,
+    },
+    {
+      name: 'El Pastel de Fiesta de Helen',
+      description: 'Torta de chocolate para celebrar con estilo.',
+      price: 14990,
+      image: '/assets/img/torta.png',
+      character: '/assets/img/helen.png',
+      isCombo: false,
+      quantity: 0,
+    },
+    {
+      name: 'Las Papas Monstruosas de Mr. Munch',
+      description: 'Crocantes, doradas y deliciosas.',
+      price: 5990,
+      image: '/assets/img/papas.png',
+      character: '/assets/img/munch.png',
+      isCombo: false,
+      quantity: 0,
+    },
+  ];
+
+  increase(item: any) {
+    item.quantity++;
+    this.cartCount++;
+    this.updateCart();
+    this.showTickets(item);
+  }
+
+  decrease(item: any) {
+    if (item.quantity > 0) {
+      item.quantity--;
+      this.cartCount--;
+      this.updateCart();
     }
   }
 
-  /** 🔹 Agregar extra */
-  agregarExtra(extra: any) {
-    extra.cantidad++;
-    this.actualizarTotal();
+  private updateCart() {
+    this.cartItems = this.items.filter((i) => i.quantity > 0);
+    this.total = this.cartItems.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
   }
 
-  /** 🔹 Calcular total */
-  actualizarTotal() {
-    const totalProductos = this.productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-    const totalExtras = this.extras.reduce((acc, e) => acc + e.precio * e.cantidad, 0);
-    this.total = totalProductos + totalExtras;
-  }
-
-  /** 🔹 Guardar pedido en Supabase y redirigir al voucher */
-  async pagar() {
-    if (this.total === 0) {
-      this.mostrarToast('Tu carrito está vacío 🛒', 'warning');
-      return;
-    }
-
-    const itemsComprados = [
-      ...this.productos.filter((p) => p.cantidad > 0),
-      ...this.extras.filter((e) => e.cantidad > 0),
-    ];
-
-    try {
-      const { data: session } = await this.supabase.client.auth.getSession();
-      const user = session?.session?.user;
-
-      if (!user) {
-        this.mostrarToast('Debes iniciar sesión para comprar 🔒', 'danger');
-        return;
-      }
-
-      const { data, error } = await this.supabase.client
-        .from('pedidos')
-        .insert({
-          usuario_id: user.id,
-          total: this.total,
-          items: itemsComprados,
-        })
-        .select('id')
-        .single();
-
-      if (error) throw error;
-
-      // 🚀 Redirigir al voucher
-      this.router.navigate(['/voucher', data.id]);
-
-      // Reiniciar carrito
-      [...this.productos, ...this.extras].forEach((item) => (item.cantidad = 0));
-      this.total = 0;
-
-    } catch (err: any) {
-      console.error('Error al guardar pedido:', err.message);
-      this.mostrarToast('❌ Error al guardar pedido', 'danger');
+  openCart() {
+    if (this.cartItems.length > 0) {
+      this.open = true;
     }
   }
 
-  /** 🔹 Toast bonito */
-  async mostrarToast(mensaje: string, color: 'success' | 'warning' | 'danger') {
-    const toast = await this.toastCtrl.create({
-      message: mensaje,
-      duration: 2500,
-      position: 'bottom',
-      color,
-    });
-    await toast.present();
+  showTickets(item: any) {
+    const card = document.querySelector('.menu-card')!;
+    const ticket = document.createElement('div');
+    ticket.classList.add('ticket-burst');
+    ticket.textContent = '+10 Tickets 🎟️';
+    card.appendChild(ticket);
+    setTimeout(() => ticket.remove(), 800);
+  }
+
+  goToVoucher() {
+    this.open = false;
+    this.router.navigate(['/voucher']);
   }
 }

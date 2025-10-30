@@ -4,30 +4,35 @@
     <img src="/assets/img/logo1.png" alt="Chuck E. Cheese Logo" />
   </div>
 
-  <!-- Contenido principal -->
+  <!-- Contenedor principal -->
   <div class="anfitrion-container">
-    <h2 class="title">Elige tu Anfitrión 🎉</h2>
+    <h2 class="title">¡Elige tu Anfitrión para tu Fiesta!🎉</h2>
 
     <!-- Grid de tarjetas -->
     <div class="cards-grid">
       <div class="host-card" *ngFor="let host of hosts" (click)="selectHost(host)">
-        <!-- Imagen del anfitrión -->
+        <!-- Imagen -->
         <img [src]="host.image" [alt]="host.name" class="host-img" />
 
         <!-- Nombre -->
         <h3 class="host-name">{{ host.name }}</h3>
+        <p class="host-species">{{ host.species }}</p>
+        <p class="host-alias">{{ host.alias }}</p>
 
-        <!-- Estrellas dinámicas -->
-        <div class="stars">
+        <!-- Íconos -->
+        <div class="skills">
           <ion-icon
-            *ngFor="let star of getStars(host.rating)"
-            [name]="star"
-            class="star-icon"
+            *ngFor="let skill of host.skills"
+            [name]="skill.icon"
+            title="{{ skill.tooltip }}"
           ></ion-icon>
         </div>
 
+        <!-- Frase -->
+        <p class="host-phrase">{{ host.phrase }}</p>
+
         <!-- Descripción -->
-        <p class="desc">{{ host.description }}</p>
+        <p class="host-desc">{{ host.description }}</p>
       </div>
     </div>
   </div>
